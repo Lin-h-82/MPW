@@ -13,70 +13,79 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: #f5f7fa;
+            background: #c7f9ff; 
             color: #333;
         }
 
         header {
-            background: linear-gradient(135deg, #6C63FF, #8B6CFF);
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
             color: white;
-            padding: 60px 20px;
+            padding: 70px 20px;
             text-align: center;
         }
 
+        /* Avatar style */
+        .avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.85);
+            margin-bottom: 18px;
+            animation: fadeIn 2s ease;
+        }
+
         header h1 {
-            font-size: 48px;
+            font-size: 55px;
             margin: 0;
             animation: fadeIn 1.5s ease;
+            font-weight: 700;
         }
 
         header p {
             font-size: 20px;
-            opacity: 0.85;
-            margin-top: 10px;
+            opacity: 0.9;
+            margin-top: 12px;
         }
 
-        /* CONTENT SECTION */
         section {
-            max-width: 850px;
+            max-width: 900px;
             margin: 40px auto;
             padding: 0 20px;
         }
 
         h2 {
-            color: #6C63FF;
-            margin-bottom: 10px;
+            color: #0077aa;
+            margin-bottom: 8px;
         }
 
-        .about-box, .skill-box, .project-box {
+        .card {
             background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+            padding: 28px;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             margin-bottom: 25px;
+            line-height: 1.7;
         }
 
-        /* SKILL TAGS */
         .skill-tag {
             display: inline-block;
-            background: #6C63FF;
+            background: #00b7ff;
             color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
+            padding: 7px 15px;
+            border-radius: 18px;
             font-size: 13px;
-            margin: 4px;
+            margin: 5px;
         }
 
-        /* FOOTER */
         footer {
             text-align: center;
             padding: 25px 15px;
             font-size: 14px;
-            background: #eee;
-            margin-top: 40px;
+            background: #b3eff8;
+            margin-top: 45px;
         }
 
-        /* ANIMATIONS */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -88,66 +97,80 @@
 
     <!-- HEADER -->
     <header>
-        <h1>Hello, I'm Linh 👋</h1>
-        <p>Aspiring Developer | Learner | Creator</p>
+        <img src="avatar.png" alt="Linh's Avatar" class="avatar">
+        <h1>Hello, I'm Linh 🩵</h1>
+        <p>Aspiring Developer • Research Lover • Lifelong Learner</p>
     </header>
 
-    <!-- ABOUT -->
     <section>
-        <div class="about-box">
+
+        <!-- ABOUT ME -->
+        <div class="card">
             <h2>✨ About Me</h2>
             <p>
-                Xin chào! Mình là **Linh**, một người thích học hỏi, tạo ra các sản phẩm nhỏ xinh và khám phá công nghệ.
-                Mình bắt đầu với GitHub để lưu trữ các dự án cá nhân và xây dựng portfolio cho tương lai.
-                <br><br>
-                Ngoài lập trình, mình còn đam mê đọc sách, viết, làm research và phát triển bản thân mỗi ngày.
+                Mình là <strong>Linh Tran</strong>, một người luôn tò mò về cách mọi thứ vận hành và thích khám phá công nghệ.
+                Hành trình với lập trình của mình bắt đầu từ những dòng HTML/CSS đơn giản, và dần dần mình bắt đầu tìm hiểu sâu hơn
+                về cách tạo website, quản lý dự án bằng GitHub và xây dựng personal brand thông qua portfolio online.
+            </p>
+            <p>
+                Ngoài coding, mình còn dành nhiều thời gian cho:  
+                • Tâm lý học  
+                • Research khoa học  
+                • Productivity & note-taking  
+                • Thiết kế UI cơ bản  
+                • Viết báo cáo và phân tích học thuật  
+            </p>
+            <p>
+                Mục tiêu trong năm tới là học JavaScript, xây dựng vài mini projects và tạo một portfolio chỉnh chu để phục vụ học tập/công việc.
             </p>
         </div>
 
         <!-- SKILLS -->
-        <div class="skill-box">
+        <div class="card">
             <h2>🚀 Skills & Tools</h2>
-            <p>Các kỹ năng mình đang học và sử dụng:</p>
+            <p>Dưới đây là những gì mình đang học và sử dụng:</p>
+
             <div>
                 <span class="skill-tag">HTML</span>
                 <span class="skill-tag">CSS</span>
-                <span class="skill-tag">JavaScript (basic)</span>
+                <span class="skill-tag">JavaScript (Basic)</span>
                 <span class="skill-tag">Git</span>
                 <span class="skill-tag">GitHub</span>
-                <span class="skill-tag">Research</span>
-                <span class="skill-tag">Project Writing</span>
+                <span class="skill-tag">VS Code</span>
+                <span class="skill-tag">Research Writing</span>
                 <span class="skill-tag">Academic Workflow</span>
+                <span class="skill-tag">Data Searching</span>
                 <span class="skill-tag">English B2</span>
+                <span class="skill-tag">Time Management</span>
             </div>
         </div>
 
         <!-- PROJECTS -->
-        <div class="project-box">
-            <h2>📁 Projects</h2>
-            <p>Dưới đây là vài dự án nhỏ mình đã/đang làm:</p>
-
+        <div class="card">
+            <h2>📁 Projects & Learning Journey</h2>
             <ul>
-                <li><strong>Personal Website</strong> – trang bạn đang xem 👀</li>
-                <li><strong>GitHub Learning Repo</strong> – nơi mình thử nghiệm các dòng lệnh Git.</li>
-                <li><strong>Mini HTML Components</strong> – bài tập tự xây UI nhỏ bằng HTML/CSS.</li>
-                <li><strong>Study Notes</strong> – note về tâm lý học, OB, research, coding…</li>
+                <li><strong>🌐 Personal Website</strong> – Website này, xây bằng HTML/CSS + GitHub Pages.</li>
+                <li><strong>📚 Study Notes Hub</strong> – Ghi chú các môn như Psychology, OB, Research Method.</li>
+                <li><strong>🧪 GitHub Experiments</strong> – Repo thực hành Git: pull/push/branch/merge.</li>
+                <li><strong>🎨 UI Components</strong> – Tạo button, card, navbar bằng CSS.</li>
+                <li><strong>📝 Mini Blog</strong> – Các bài viết ngắn: phân tích, cảm nhận, review sách.</li>
             </ul>
         </div>
 
         <!-- CONTACT -->
-        <div class="project-box">
+        <div class="card">
             <h2>📬 Contact</h2>
-            <p>Nếu bạn muốn kết nối với mình:</p>
+            <p>Kết nối với mình tại:</p>
             <ul>
-                <li>Email: <strong>your-email@example.com</strong></li>
-                <li>GitHub: <strong>github.com/Lin-h-82</strong></li>
-                <li>Socials (optional): Instagram / LinkedIn / etc.</li>
+                <li>Email: <strong>khanhlinhtransunflower@gmail.com</strong></li>
+                <li>GitHub: <strong>Lin-h-82</strong></li>
             </ul>
         </div>
+
     </section>
 
     <footer>
-        © 2025 Linh Tran – Built with ❤️ using GitHub Pages
+        © 2025 Linh Tran — Built with 🩵 GitHub Pages
     </footer>
 
 </body>
