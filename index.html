@@ -1,468 +1,551 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Linh Tran — Personal Website</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Linh Tran — Portfolio</title>
 
-<!-- Google Font + Font Awesome -->
+<!-- Fonts + Icons -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
-  :root{
-    --cyan-1:#c7f9ff;
-    --cyan-2:#00c6ff;
-    --cyan-3:#0072ff;
-    --accent:#0077aa;
-    --card-bg: #ffffff;
-    --glass: rgba(255,255,255,0.8);
-    --radius:14px;
-  }
+/* ------------------------------------------
+   BASE + COLORS
+-------------------------------------------*/
+:root{
+  --cyan-1:#c7f9ff;
+  --cyan-2:#00c6ff;
+  --cyan-3:#0072ff;
+  --accent:#0077aa;
+  --text:#123;
+  --radius:16px;
+  --shadow:0 8px 22px rgba(0,0,0,0.08);
+}
+body{
+  margin:0; font-family:'Poppins',sans-serif;
+  background:var(--cyan-1); color:var(--text);
+}
 
-  html { scroll-behavior: smooth; }
-  body{
-    font-family: 'Poppins', sans-serif;
-    margin:0;
-    background:var(--cyan-1);
-    color:#123;
-  }
+/* ------------------------------------------
+   NAV
+-------------------------------------------*/
+nav{
+  position:sticky; top:0; z-index:900;
+  background:rgba(255,255,255,0.65);
+  backdrop-filter:blur(10px);
+  box-shadow:0 4px 12px rgba(0,0,0,0.05);
+}
+nav .inner{
+  max-width:1100px; margin:auto;
+  padding:10px 20px;
+  display:flex; justify-content:space-between; align-items:center;
+}
+nav ul{ 
+  list-style:none; display:flex; gap:16px; padding:0; margin:0;
+}
+nav a{
+  text-decoration:none; font-weight:600;
+  color:var(--accent);
+  padding:6px 10px; border-radius:8px;
+}
+nav a.active{
+  background:rgba(0,119,170,0.12);
+}
 
-  /* NAV */
-  nav{
-    position: sticky; top:0; z-index:200;
-    background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45));
-    backdrop-filter: blur(6px);
-    box-shadow:0 6px 18px rgba(0,0,0,0.06);
-  }
-  nav .inner{
-    max-width:1100px; margin:0 auto; padding:10px 18px;
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  nav .brand{ display:flex; align-items:center; gap:12px;}
-  .brand .mini-avatar{
-    width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,0,0,0.08);
-  }
-  nav ul{ list-style:none; display:flex; gap:18px; padding:0; margin:0; }
-  nav a{
-    text-decoration:none; color:var(--accent); font-weight:600;
-    padding:8px 10px; border-radius:8px;
-  }
-  nav a.active{
-    background:rgba(0,119,170,0.12);
-    color:var(--cyan-3);
-  }
+/* Language switch */
+.lang-switch{
+  display:flex; gap:10px; font-size:14px;
+}
+.lang-switch span{
+  cursor:pointer; font-weight:600; color:#036;
+}
+.lang-switch .active{ color:var(--cyan-3); text-decoration:underline; }
 
-  /* HEADER */
-  header#home{
-    text-align:center;
-    padding:60px 20px 40px;
-    background: linear-gradient(135deg,var(--cyan-2),var(--cyan-3));
-    color:white;
-  }
-  .avatar{
-    width:160px;height:160px;border-radius:50%;object-fit:cover;
-    border:6px solid rgba(255,255,255,0.9);
-    margin:0 auto 16px;
-  }
-  header h1{ font-size:44px; margin:6px 0 4px; font-weight:700; }
-  header p{ opacity:0.98;font-size:18px; margin:0;}
+/* ------------------------------------------
+   HEADER
+-------------------------------------------*/
+header{
+  text-align:center;
+  background:linear-gradient(135deg,var(--cyan-2),var(--cyan-3));
+  color:white; padding:60px 20px 40px;
+}
 
-  /* MAIN */
-  main{ max-width:1100px; margin:-40px auto 60px; padding:0 18px; }
+header .avatar{
+  width:230px; height:230px;
+  border-radius:50%; object-fit:cover;
+  border:8px solid rgba(255,255,255,0.95);
+  box-shadow:0 0 25px rgba(255,255,255,0.28);
+  margin-bottom:14px;
+}
+header h1{ font-size:42px; margin:6px 0; }
+header p{ font-size:18px; }
 
-  /* HOME GRID */
-  .home-grid{
-    display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-    gap:20px; margin-top:12px;
-  }
-  .card{
-    background:var(--card-bg); padding:20px; border-radius:var(--radius);
-    box-shadow:0 8px 30px rgba(0,0,0,0.06);
-    transition: transform .25s ease, box-shadow .25s ease;
-    cursor:pointer; min-height:150px;
-  }
-  .card:hover{
-    transform: translateY(-8px);
-    box-shadow:0 18px 40px rgba(0,0,0,0.10);
-  }
-  .card .icon{ font-size:28px; color:var(--cyan-3); }
+/* ------------------------------------------
+   MAIN LAYOUT
+-------------------------------------------*/
+main{
+  max-width:1100px; margin:auto; padding:0 20px;
+  margin-top:-20px;
+}
 
-  /* DETAIL SECTIONS */
-  .detail{
-    display:none; animation: fadeIn .36s ease; margin-top:20px;
-  }
-  .detail.active{ display:block; }
-  .detail-header{
-    display:flex; gap:16px; align-items:center; margin-bottom:12px;
-  }
-  .detail-header img{
-    width:90px;height:90px;border-radius:50%;object-fit:cover;
-    border:4px solid rgba(0,0,0,0.05);
-  }
-  .back-btn{
-    display:inline-flex; align-items:center; gap:8px;
-    background:var(--glass); padding:8px 12px; border-radius:10px;
-    text-decoration:none; color:var(--accent);
-    margin-bottom:12px; font-weight:500;
-  }
-  .card-inner{
-    background:#fff; padding:18px; border-radius:12px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.05);
-  }
+/* ------------------------------------------
+   HOME CARDS
+-------------------------------------------*/
+.home-grid{
+  display:grid; gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  margin-bottom:40px;
+}
+.card{
+  background:white; padding:18px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  cursor:pointer;
+  transition:.25s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 28px rgba(0,0,0,0.12);
+}
+.card .icon{ font-size:26px; color:var(--cyan-3); margin-bottom:6px; }
 
-  /* EXPERIENCE IMAGE GRID */
-  .exp-img-grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
-    gap:14px; margin:14px 0 20px;
-  }
-  .exp-img-grid img{
-    width:100%;height:150px;object-fit:cover;
-    border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.06);
-  }
+/* ------------------------------------------
+   DETAIL SECTION
+-------------------------------------------*/
+.detail{ display:none; animation:fade .3s ease; }
+.detail.active{ display:block; }
+@keyframes fade{ from{opacity:0;} to{opacity:1;} }
 
-  /* PROJECT GRID */
-  .projects-grid{
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:16px; margin-top:12px;
-  }
-  .proj{
-    background:#fbfdff;border-radius:10px;overflow:hidden;
-    box-shadow:0 8px 18px rgba(0,0,0,0.04);
-  }
-  .proj img{
-    width:100%;height:140px;object-fit:cover;
-  }
-  .proj .meta{ padding:10px 12px; }
-  .proj .meta h4{ margin:0 0 8px;font-size:16px;font-weight:600;}
+.back-btn{
+  display:inline-block; margin:14px 0;
+  background:white; padding:8px 12px;
+  border-radius:10px;
+  color:var(--accent); text-decoration:none;
+  box-shadow:var(--shadow);
+}
+.section-header{
+  display:flex; align-items:center; gap:14px; margin-bottom:14px;
+}
+.section-header img{
+  width:80px; height:80px; border-radius:50%; object-fit:cover;
+  border:4px solid rgba(255,255,255,0.8);
+}
+.section-box{
+  background:white; padding:20px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  margin-bottom:40px;
+}
 
-  footer{
-    text-align:center; margin-top:48px;
-    padding:30px 12px; color:#234;
-  }
+/* ------------------------------------------
+   PROJECTS SPECIAL LAYOUT
+-------------------------------------------*/
+/* Large image top */
+.project-banner{
+  width:100%; border-radius:var(--radius);
+  object-fit:cover; height:260px;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+}
 
-  @keyframes fadeIn{
-    from{ opacity:0; transform: translateY(6px); }
-    to{ opacity:1; transform: translateY(0); }
-  }
+/* 3-column project group */
+.project-3col{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px; margin:20px 0 40px;
+}
+.project-item{
+  background:white; padding:16px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.project-item h4{ margin:0 0 6px; color:var(--cyan-3); }
+
+/* 2-column left-right blocks */
+.project-row{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:20px; margin-bottom:40px;
+}
+.project-row img{
+  width:100%; border-radius:var(--radius);
+  height:220px; object-fit:cover;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+}
+.project-row .text{ background:white; padding:16px; border-radius:var(--radius); box-shadow:var(--shadow); }
+
+/* Reverse layout */
+.project-row.reverse{
+  grid-template-columns:1fr 1.2fr;
+}
+
+/* Mobile adjustments */
+@media(max-width:768px){
+  .project-3col{ grid-template-columns:1fr; }
+  .project-row{ grid-template-columns:1fr; }
+  .project-row.reverse{ grid-template-columns:1fr; }
+}
+
+/* ------------------------------------------
+   IMAGE POPUP (ZOOM-IN)
+-------------------------------------------*/
+#imgPopup{
+  position:fixed; top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.75);
+  display:none;
+  align-items:center; justify-content:center;
+  z-index:999;
+}
+#imgPopup img{
+  max-width:90%; max-height:90%;
+  border-radius:12px;
+  animation:zoom .3s ease;
+}
+@keyframes zoom{
+  from{ transform:scale(0.4); opacity:0; }
+  to{ transform:scale(1); opacity:1; }
+}
+
+/* ------------------------------------------
+   BACK TO TOP
+-------------------------------------------*/
+#topBtn{
+  position:fixed; bottom:30px; right:30px;
+  width:48px; height:48px;
+  background:white;
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+  display:none;
+}
+#topBtn i{ color:var(--cyan-3); font-size:20px; }
+
+/* ------------------------------------------
+   FOOTER
+-------------------------------------------*/
+footer{
+  text-align:center; padding:40px 10px; color:#234;
+}
 </style>
 </head>
+
 <body>
 
 <!-- NAV -->
 <nav>
   <div class="inner">
-    <div class="brand">
-      <img src="avatar.png" class="mini-avatar">
-      <div>
-        <div style="font-weight:700;color:#084;">Linh Tran</div>
-        <div style="font-size:12px;color:#066;">Business Administration • Research • Innovation</div>
-      </div>
-    </div>
-
     <ul id="nav-links">
-      <li><a href="#home" data-target="home" class="active">Home</a></li>
-      <li><a href="#about" data-target="about">About</a></li>
-      <li><a href="#skills" data-target="skills">Skills</a></li>
-      <li><a href="#projects" data-target="projects">Projects</a></li>
-      <li><a href="#certs" data-target="certs">Certificates</a></li>
-      <li><a href="#contact" data-target="contact">Contact</a></li>
+      <li><a data-target="home" class="active">Home</a></li>
+      <li><a data-target="about">About</a></li>
+      <li><a data-target="skills">Skills</a></li>
+      <li><a data-target="projects">Projects</a></li>
+      <li><a data-target="certs">Certificates</a></li>
+      <li><a data-target="contact">Contact</a></li>
     </ul>
+
+    <div class="lang-switch">
+      <span id="enBtn" class="active">EN</span> |
+      <span id="vnBtn">VN</span>
+    </div>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HEADER -->
 <header id="home">
   <img src="avatar.png" class="avatar">
-  <h1>Hello — I'm Linh 🩵</h1>
-  <p>A Business Administration student exploring analysis, research, and simple web-based tools.</p>
+  <h1 data-lang="header_title">Hello — I'm Linh 🩵</h1>
+  <p data-lang="header_desc">A Business Administration student exploring analysis, research, and simple web-based tools.</p>
 </header>
 
 <main>
 
-<!-- HOME GRID -->
-<section id="home-grid">
-  <h2 style="color:var(--accent);margin-bottom:8px;">Explore</h2>
-
+<!-- HOME CARDS -->
+<section id="home-grid" class="detail active">
   <div class="home-grid">
-
     <div class="card" data-open="about">
       <div class="icon"><i class="fa-solid fa-user"></i></div>
-      <h3>About</h3>
-      <p>Background, journey, and experience.</p>
+      <h3>About</h3><p>My background and journey.</p>
     </div>
-
     <div class="card" data-open="skills">
-      <div class="icon"><i class="fa-solid fa-gears"></i></div>
-      <h3>Skills</h3>
-      <p>Professional, technical, and soft skills.</p>
+      <div class="icon"><i class="fa-solid fa-gear"></i></div>
+      <h3>Skills</h3><p>Professional and technical skills.</p>
     </div>
-
     <div class="card" data-open="projects">
       <div class="icon"><i class="fa-solid fa-folder-open"></i></div>
-      <h3>Projects</h3>
-      <p>Selected works and learning projects.</p>
+      <h3>Projects</h3><p>Selected works and learning.</p>
     </div>
-
     <div class="card" data-open="certs">
       <div class="icon"><i class="fa-solid fa-certificate"></i></div>
-      <h3>Certificates</h3>
-      <p>Courses and academic development.</p>
+      <h3>Certificates</h3><p>Academic and self-learning.</p>
     </div>
-
-    <div class="card" data-open="blog">
-      <div class="icon"><i class="fa-solid fa-book"></i></div>
-      <h3>Blog / Notes</h3>
-      <p>Study notes and reflections.</p>
-    </div>
-
     <div class="card" data-open="contact">
       <div class="icon"><i class="fa-solid fa-envelope"></i></div>
-      <h3>Contact</h3>
-      <p>Email, GitHub, and LinkedIn.</p>
+      <h3>Contact</h3><p>Email & LinkedIn.</p>
     </div>
-
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ABOUT SECTION (unchanged content) -->
 <section id="about" class="detail">
-  <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
-
-  <div class="detail-header">
+  <a class="back-btn" data-back>← Back</a>
+  <div class="section-header">
     <img src="avatar.png">
-    <div>
-      <h2>About Me</h2>
-      <div style="color:#456;">A semi-formal introduction to my background and experience.</div>
-    </div>
+    <h2>About Me</h2>
   </div>
 
-  <div class="card-inner">
-    <h3>Introduction</h3>
-    <p>I’m <strong>Tran Khanh Linh</strong>, a Business Administration student at Foreign Trade University.  
-    My academic journey revolves around analytical thinking, structured problem-solving, research communication, and interest in youth-led innovation and inclusive community development.  
-    I enjoy turning complex information into clear, structured, and actionable insights.</p>
-
-    <h3 style="margin-top:14px;">Experience Highlights</h3>
-
-    <!-- EXPERIENCE IMAGE GRID -->
-    <div class="exp-img-grid">
-      <img src="images/project4.png">
-      <img src="images/project5.png">
-    </div>
-
-    <p><strong>Research & Development Member — Entrepreneur Z (EZ), FIIS–FTU</strong><br>
-    Contributed to youth innovation initiatives focused on sustainability and digital transformation.  
-    Assisted in research synthesis, idea evaluation, and project documentation.  
-    Developed teamwork skills in a dynamic, student-led environment.</p>
-
-    <p><strong>Vietnam Global Outreach (VGO) — Heritage Preservation Project</strong><br>
-    Participated in cultural preservation activities related to traditional markets.  
-    Collaborated with hearing-impaired youth, gaining experience in inclusive communication and community engagement.</p>
-
-    <p><strong>Business Case Solving Practice</strong><br>
-    Applied frameworks such as MECE, SWOT, and 5 Whys to analyze business scenarios.  
-    Strengthened teamwork, structured thinking, and presentation skills.</p>
-
-    <h3 style="margin-top:12px;">Achievements</h3>
-    <ul>
-      <li>Second Prize — Provincial English for Gifted Students, Nam Dinh (2024)</li>
-      <li>IELTS 7.5</li>
-      <li>SAT 1310</li>
-    </ul>
-
-    <h3 style="margin-top:12px;">Personal Side</h3>
-    <p>I value continuous learning, meaningful work, and collaboration.  
-    I enjoy organizing information, writing, and contributing to community-oriented projects.  
-    My personality leans toward being empathetic, structured, and curious — and I definitely work best with a cup of iced milk coffee at night ☕️💙</p>
+  <div class="section-box">
+    <p>I’m <strong>Tran Khanh Linh</strong>, BA student at FTU with interests in research, problem-solving, and youth innovation.  
+    I enjoy organizing information and working through structured frameworks — often powered by matcha 🍵.</p>
   </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills" class="detail">
-  <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
-
-  <div class="detail-header">
-    <img src="avatar.png">
-    <div><h2>Skills</h2></div>
+  <a class="back-btn" data-back>← Back</a>
+  <div class="section-header">
+    <img src="avatar.png"><h2>Skills</h2>
   </div>
 
-  <div class="card-inner">
+  <div class="section-box">
     <h3>Professional Skills</h3>
     <ul>
-      <li>Business Analysis (requirements, workflows, documentation)</li>
-      <li>Structured problem-solving using MECE and 5 Whys</li>
-      <li>Research & academic writing</li>
-      <li>Case-solving (analysis, teamwork, presentation)</li>
-      <li>Communication & facilitation</li>
-      <li>Time management and adaptability</li>
+      <li>🧭 Business Analysis</li>
+      <li>🧩 Structured Problem-Solving</li>
+      <li>📝 Research & Academic Writing</li>
+      <li>📊 Case-solving</li>
+      <li>🗣 Communication</li>
+      <li>⏳ Time Management</li>
     </ul>
+  </div>
 
-    <h3 style="margin-top:12px;">Technical Skills</h3>
+  <div class="section-box">
+    <h3>Technical Skills</h3>
     <ul>
-      <li>HTML/CSS — building interactive pages</li>
-      <li>Git & GitHub — version control and hosting</li>
-      <li>JavaScript (basic)</li>
-      <li>Markdown & Notion — structured documentation</li>
-      <li>SPSS — basic academic statistics</li>
-    </ul>
-
-    <h3 style="margin-top:12px;">Learning Roadmap</h3>
-    <ul>
-      <li>Business Analysis essentials</li>
-      <li>JavaScript fundamentals</li>
-      <li>Data visualization basics</li>
+      <li>🌐 HTML/CSS</li>
+      <li>🔗 Git & GitHub</li>
+      <li>⚡ JavaScript (basic)</li>
+      <li>📄 Markdown / Notion</li>
+      <li>📈 SPSS (basic)</li>
     </ul>
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- PROJECTS SECTION -->
 <section id="projects" class="detail">
-  <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
-
-  <div class="detail-header">
-    <img src="avatar.png">
-    <div><h2>Projects</h2></div>
+  <a class="back-btn" data-back>← Back</a>
+  <div class="section-header">
+    <img src="avatar.png"><h2>Projects</h2>
   </div>
 
-  <div class="card-inner">
+  <!-- ẢNH LỚN CHUNG -->
+  <img src="images/project1.png" class="project-banner popupable">
 
-    <div class="projects-grid">
+  <!-- 3 cột nhỏ -->
+  <div class="project-3col">
 
-      <div class="proj">
-        <img src="images/project1.png">
-        <div class="meta">
-          <h4>Personal Interactive Website</h4>
-          <p>A custom-built portfolio using HTML, CSS, and simple JavaScript with SPA-like navigation.</p>
-        </div>
-      </div>
+    <div class="project-item">
+      <h4>Personal Website</h4>
+      <p>A custom-built portfolio using HTML, CSS, and simple JavaScript.  
+      Designed as an SPA-like page with navigation, responsive layout, and dynamic sections.</p>
+    </div>
 
-      <div class="proj">
-        <img src="images/project2.png">
-        <div class="meta">
-          <h4>Study Notes Hub</h4>
-          <p>A structured collection of academic notes in Markdown and GitHub for study and revision.</p>
-        </div>
-      </div>
+    <div class="project-item">
+      <h4>Study Notes Hub</h4>
+      <p>A structured collection of academic notes covering research methods, OB, BA fundamentals, and case frameworks — organized via Markdown & GitHub.</p>
+    </div>
 
-      <div class="proj">
-        <img src="images/project3.png">
-        <div class="meta">
-          <h4>UI Components Practice</h4>
-          <p>Small components built for practicing layout, styling, and basic JS interactions.</p>
-        </div>
-      </div>
+    <div class="project-item">
+      <h4>UI Components Practice</h4>
+      <p>A set of small UI components to practice layout, styling, and DOM interaction.  
+      Includes cards, buttons, layouts, and responsive blocks.</p>
+    </div>
 
+  </div>
+
+  <!-- PROJECT 4 — VGO -->
+  <div class="project-row">
+    <div class="text">
+      <h3>VGO Heritage Preservation Project</h3>
+      <p>A community-oriented project focused on preserving the cultural value of traditional markets and supporting inclusive youth engagement — especially working with hearing-impaired youth.</p>
+    </div>
+    <img src="images/project2.png" class="popupable">
+  </div>
+
+  <!-- PROJECT 5 — Business Case -->
+  <div class="project-row reverse">
+    <img src="images/project3.png" class="popupable">
+    <div class="text">
+      <h3>Business Case Practice</h3>
+      <p>A self-directed project applying structured frameworks (MECE, SWOT, 5 Whys).  
+      Helped sharpen analytical thinking and communication — usually powered by matcha 🍵.</p>
     </div>
   </div>
+
 </section>
 
 <!-- CERTIFICATES -->
 <section id="certs" class="detail">
-  <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
-
-  <div class="detail-header">
-    <img src="avatar.png">
-    <div><h2>Certificates</h2></div>
+  <a class="back-btn" data-back>← Back</a>
+  <div class="section-header">
+    <img src="avatar.png"><h2>Certificates</h2>
   </div>
 
-  <div class="card-inner">
+  <div class="section-box">
+    <h3>Academic Coursework</h3>
     <ul>
-      <li>Business Research Methods — FTU (2024)</li>
+      <li>Business Research Methods — Research design & report writing</li>
+      <li>Academic English for Business Communication — Presentation & analytical writing</li>
+    </ul>
+  </div>
+
+  <div class="section-box">
+    <h3>Professional Development</h3>
+    <ul>
       <li>Business Analysis — Foundation Level</li>
-      <li>Academic English & Research Writing</li>
-      <li>Intro to HTML/CSS — 2025</li>
+      <li>Writing & Presentation Skills — FTU</li>
     </ul>
   </div>
-</section>
 
-<!-- BLOG -->
-<section id="blog" class="detail">
-  <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
-
-  <div class="detail-header">
-    <img src="avatar.png">
-    <div><h2>Blog / Notes</h2></div>
-  </div>
-
-  <div class="card-inner">
-    <p>Upcoming content will include research summaries, personal reflections, academic notes, and simple breakdowns of business frameworks.</p>
-
-    <p>Planned posts:</p>
+  <div class="section-box">
+    <h3>Self-Learning</h3>
     <ul>
-      <li>How I structure a research report from scratch</li>
-      <li>Youth innovation & inclusive development — insights from EZ & VGO</li>
-      <li>From gifted English to academic writing — my transition</li>
+      <li>HTML/CSS Fundamentals</li>
+      <li>Notion Documentation Basics</li>
+      <li>Youth Innovation Workshops — EZ Program</li>
     </ul>
   </div>
+
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="detail">
-  <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
-
-  <div class="detail-header">
-    <img src="avatar.png">
-    <div><h2>Contact</h2></div>
+  <a class="back-btn" data-back>← Back</a>
+  <div class="section-header">
+    <img src="avatar.png"><h2>Contact</h2>
   </div>
 
-  <div class="card-inner">
-    <ul>
-      <li><i class="fa-solid fa-envelope"></i> <strong>Email:</strong> <a href="mailto:khanhlinhtransunflower@gmail.com">khanhlinhtransunflower@gmail.com</a></li>
-      <li><i class="fa-brands fa-github"></i> <strong>GitHub:</strong> <a target="_blank" href="https://github.com/Lin-h-82">github.com/Lin-h-82</a></li>
-      <li><i class="fa-brands fa-linkedin"></i> <strong>LinkedIn:</strong> <a target="_blank" href="https://www.linkedin.com/in/linh-trần-khánh-113229360/">View Profile</a></li>
-    </ul>
-
-    <p style="margin-top:10px; color:#345;">Based in Dong Da, Hanoi — open to collaborations, study discussions, and youth innovation projects.</p>
+  <div class="section-box">
+    <p><strong>Email:</strong> khanhlinhtransunflower@gmail.com</p>
+    <p><strong>GitHub:</strong> github.com/Lin-h-82</p>
+    <p><strong>LinkedIn:</strong> linkedin.com/in/linh-trần-khánh-113229360</p>
   </div>
 </section>
 
 </main>
 
+<!-- FOOTER -->
 <footer>
-  © 2025 Linh Tran — Built with 🩵 using GitHub Pages
+  © 2025 Linh Tran — Built with 🩵 on GitHub Pages
 </footer>
 
+<!-- BACK TO TOP BUTTON -->
+<div id="topBtn"><i class="fa-solid fa-arrow-up"></i></div>
+
+<!-- POPUP -->
+<div id="imgPopup"><img src=""></div>
+
 <script>
-(function(){
-  const cards = document.querySelectorAll('.card[data-open]');
-  const details = document.querySelectorAll('.detail');
-  const navLinks = document.querySelectorAll('nav a[data-target]');
-  const backBtns = document.querySelectorAll('[data-back]');
-  const homeGrid = document.getElementById('home-grid');
+/* ------------------------------------------
+   NAV + SECTION SWITCH
+-------------------------------------------*/
+const navLinks = document.querySelectorAll('nav a[data-target]');
+const sections = document.querySelectorAll('.detail');
+const home = document.getElementById('home-grid');
 
-  function showSection(id){
-    details.forEach(d => d.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    homeGrid.style.display = 'none';
-    navLinks.forEach(a => a.classList.toggle('active', a.dataset.target === id));
-    history.pushState({section:id},'', '#'+id);
-  }
+navLinks.forEach(a=>{
+  a.addEventListener('click',()=>{
+    navLinks.forEach(l=>l.classList.remove('active'));
+    a.classList.add('active');
 
-  function showHome(){
-    details.forEach(d => d.classList.remove('active'));
-    homeGrid.style.display='';
-    navLinks.forEach(a => a.classList.toggle('active', a.dataset.target === 'home'));
-    history.pushState({section:'home'},'', '#home');
-  }
-
-  cards.forEach(c=>{
-    c.addEventListener('click', ()=> showSection(c.dataset.open));
+    sections.forEach(s=>s.classList.remove('active'));
+    const id = a.dataset.target;
+    if(id === "home"){ home.classList.add('active'); }
+    else{
+      home.classList.remove('active');
+      document.getElementById(id).classList.add('active');
+    }
   });
+});
 
-  navLinks.forEach(a=>{
-    a.addEventListener('click',(e)=>{
-      e.preventDefault();
-      if(a.dataset.target==='home'){ showHome(); }
-      else{ showSection(a.dataset.target); }
-    });
+/* Back buttons */
+document.querySelectorAll('[data-back]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    sections.forEach(s=>s.classList.remove('active'));
+    home.classList.add('active');
+    navLinks.forEach(l=>l.classList.remove('active'));
+    document.querySelector('nav a[data-target="home"]').classList.add('active');
   });
+});
 
-  backBtns.forEach(b=> b.addEventListener('click',(e)=>{
-    e.preventDefault(); showHome();
-  }));
-})();
+/* Card navigation */
+document.querySelectorAll('.card[data-open]').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const t = card.dataset.open;
+    navLinks.forEach(l=>l.classList.remove('active'));
+    document.querySelector(`nav a[data-target="${t}"]`).classList.add('active');
+    home.classList.remove('active');
+    document.getElementById(t).classList.add('active');
+  });
+});
+
+/* ------------------------------------------
+   POPUP IMAGE (Zoom-in)
+-------------------------------------------*/
+const popup = document.getElementById('imgPopup');
+const popupImg = popup.querySelector('img');
+
+document.querySelectorAll('.popupable').forEach(img=>{
+  img.addEventListener('click',()=>{
+    popup.style.display="flex";
+    popupImg.src = img.src;
+  });
+});
+popup.addEventListener('click',()=> popup.style.display="none");
+
+/* ------------------------------------------
+   BACK TO TOP
+-------------------------------------------*/
+const topBtn = document.getElementById('topBtn');
+window.addEventListener('scroll',()=>{
+  topBtn.style.display = (window.scrollY > 300) ? "flex" : "none";
+});
+topBtn.addEventListener('click',()=> window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ------------------------------------------
+   LANGUAGE SWITCH (EN ↔ VN)
+-------------------------------------------*/
+const enBtn = document.getElementById('enBtn');
+const vnBtn = document.getElementById('vnBtn');
+
+const dict = {
+  header_title:{
+    en:"Hello — I'm Linh 🩵",
+    vn:"Xin chào — Mình là Linh 🩵"
+  },
+  header_desc:{
+    en:"A Business Administration student exploring analysis, research, and simple web-based tools.",
+    vn:"Sinh viên Kinh doanh quốc tế, quan tâm tới phân tích, nghiên cứu và các công cụ web đơn giản."
+  }
+};
+
+function switchLang(lang){
+  document.querySelectorAll('[data-lang]').forEach(el=>{
+    const key = el.dataset.lang;
+    el.textContent = dict[key][lang];
+  });
+}
+
+enBtn.addEventListener('click',()=>{
+  enBtn.classList.add('active'); vnBtn.classList.remove('active');
+  switchLang("en");
+});
+vnBtn.addEventListener('click',()=>{
+  vnBtn.classList.add('active'); enBtn.classList.remove('active');
+  switchLang("vn");
+});
 </script>
 
 </body>
