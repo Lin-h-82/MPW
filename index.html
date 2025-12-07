@@ -1,345 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Linh Tran Portfolio</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Linh Tran — Portfolio</title>
 
-<!-- Font & Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<!-- Google Fonts + Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
-/* =============================
-   GLOBAL STYLES
-============================= */
-:root {
-  --cyan-1: #E0FCFF;
-  --cyan-2: #B9F3FF;
-  --cyan-3: #7BE2F9;
-  --accent: #00AABB;
-  --text-main: #123;
-  --text-sub: #345;
-  --bg: #F8FFFF;
-  --white: #FFF;
-  --radius: 22px;
-  --shadow: 0 4px 14px rgba(0,0,0,0.08);
+:root{
+  --cyan-1:#c7f9ff;
+  --cyan-2:#00c6ff;
+  --cyan-3:#0072ff;
+  --accent:#006fa6;
+  --text:#123;
+  --muted:#456;
+  --white:#fff;
+  --radius:16px;
+  --shadow: 0 6px 20px rgba(0,0,0,0.06);
 }
 
-* {
-  box-sizing: border-box;
-  font-family: "Inter", sans-serif;
-  margin: 0;
-  padding: 0;
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--cyan-1);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+  overflow-x:hidden;
 }
 
-body {
-  background: var(--bg);
-  color: var(--text-main);
-}
-
-/* =============================
-   NAVBAR
-============================= */
-nav {
-  width: 100%;
-  background: rgba(255,255,255,0.68);
-  backdrop-filter: blur(10px);
-  position: fixed;
-  top: 0;
-  z-index: 500;
+/* NAV */
+nav{
+  position:sticky; top:0; z-index:900;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(6px);
   box-shadow: var(--shadow);
 }
+nav .inner{
+  max-width:1100px; margin:0 auto; padding:10px 18px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.brand { display:flex; gap:12px; align-items:center }
+.brand img{ width:52px; height:52px; border-radius:50%; object-fit:cover; border:3px solid #fff; box-shadow:0 6px 18px rgba(0,0,0,0.08) }
+nav ul{ display:flex; gap:14px; list-style:none; align-items:center; margin-right:8px }
+nav a{ text-decoration:none; color:var(--accent); font-weight:600; padding:6px 8px; border-radius:10px }
+nav a.active{ background: rgba(0,0,0,0.05); color:var(--cyan-3) }
 
-nav .inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 24px;
+/* lang switch */
+.lang-switch{ display:flex; gap:8px; align-items:center }
+.lang-switch span{ cursor:pointer; padding:6px 8px; border-radius:8px; font-weight:600; color:var(--accent) }
+.lang-switch span.active{ background:var(--accent); color:#fff }
+
+/* HEADER */
+header{
+  text-align:center; padding:120px 18px 60px; background: linear-gradient(135deg,var(--cyan-2),var(--cyan-3)); color:#fff;
+}
+.avatar{
+  width:220px; height:220px; border-radius:50%; object-fit:cover; border:8px solid #fff;
+  box-shadow:0 10px 36px rgba(0,0,0,0.18); display:block; margin:0 auto 16px;
+}
+header h1{ font-size:40px; margin-bottom:6px }
+header p{ font-size:17px; color:rgba(255,255,255,0.95); max-width:860px; margin:0 auto }
+
+/* MAIN WRAPPER */
+main{ max-width:1100px; margin:-40px auto 60px; padding:0 18px; }
+
+/* HOME GRID */
+.home-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px }
+@media(max-width:900px){ .home-grid{ grid-template-columns:repeat(2,1fr) } }
+@media(max-width:560px){ .home-grid{ grid-template-columns:1fr } }
+
+.card{
+  background:var(--white); padding:18px; border-radius:14px; box-shadow:var(--shadow);
+  min-height:140px; cursor:pointer; transition: transform .22s, box-shadow .22s;
+  display:flex; flex-direction:column; gap:10px; justify-content:flex-start;
+}
+.card:hover{ transform:translateY(-8px); box-shadow:0 18px 42px rgba(0,0,0,0.1) }
+.card .icon{ font-size:26px; color:var(--cyan-3) }
+
+/* SECTIONS */
+.detail{ display:none; padding-top:20px }
+.detail.active{ display:block }
+
+.detail-header{ display:flex; gap:16px; align-items:center; margin-bottom:12px }
+.detail-header img{ width:90px; height:90px; border-radius:50%; object-fit:cover; border:4px solid #fff; box-shadow:0 6px 18px rgba(0,0,0,0.08) }
+
+.back-btn{
+  display:inline-flex; gap:8px; align-items:center;
+  background:#fff; padding:8px 12px; border-radius:10px; text-decoration:none; color:var(--accent);
+  box-shadow:0 6px 18px rgba(0,0,0,0.06); cursor:pointer; margin-bottom:12px;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
+/* card-inner */
+.card-inner{
+  background:var(--white); padding:20px; border-radius:14px; box-shadow:var(--shadow); line-height:1.6;
 }
 
-nav a {
-  text-decoration: none;
-  color: #123;
-  font-weight: 500;
+/* Projects layout */
+.project-hero img{ width:100%; border-radius:12px; object-fit:cover; box-shadow:var(--shadow); cursor:zoom-in }
+.project-three-cols{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px; margin-bottom:18px }
+@media(max-width:768px){ .project-three-cols{ grid-template-columns:1fr } }
+
+.project-row{ display:flex; gap:20px; align-items:center; margin-top:20px }
+.project-row img{ width:45%; border-radius:12px; object-fit:cover; cursor:zoom-in; box-shadow:var(--shadow) }
+@media(max-width:900px){ .project-row{ flex-direction:column } .project-row img{ width:100% } }
+
+/* img popup */
+#imgPopup{
+  position:fixed; inset:0; background:rgba(0,0,0,0.75); display:none; align-items:center; justify-content:center;
+  z-index:2000; padding:20px;
 }
+#imgPopup img{ max-width:96%; max-height:92%; border-radius:12px; box-shadow:0 12px 40px rgba(0,0,0,0.4); transform-origin:center center; }
 
-nav a.active {
-  color: var(--accent);
+/* back-to-top */
+#backToTop{
+  position:fixed; right:20px; bottom:22px; width:48px; height:48px; border-radius:50%;
+  background:#fff; display:none; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(0,0,0,0.15); z-index:1800; cursor:pointer;
 }
+#backToTop i{ color:var(--cyan-3); font-size:18px }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+/* footer */
+footer{ text-align:center; padding:28px 12px; color:var(--muted); margin-top:40px; }
 
-.brand img {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-}
-
-/* Language Switch */
-.lang-switch {
-  display: flex;
-  gap: 8px;
-  padding: 6px;
-  background: var(--cyan-1);
-  border-radius: 20px;
-}
-
-.lang-switch span {
-  padding: 4px 10px;
-  cursor: pointer;
-  border-radius: 14px;
-}
-
-.lang-switch span.active {
-  background: var(--accent);
-  color: #FFF;
-}
-
-/* =============================
-   HEADER / HERO
-============================= */
-header {
-  padding: 140px 24px 80px;
-  text-align: center;
-}
-
-header .avatar {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 6px solid #FFF;
-  box-shadow: var(--shadow);
-  margin-bottom: 20px;
-}
-
-header h1 {
-  font-size: 34px;
-  margin-bottom: 10px;
-  color: #055;
-}
-
-/* =============================
-   HOME GRID
-============================= */
-.home-grid {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-  gap: 18px;
-}
-
-.card {
-  border-radius: var(--radius);
-  background: var(--white);
-  padding: 20px;
-  box-shadow: var(--shadow);
-  text-align: center;
-  cursor: pointer;
-  transition: 0.25s;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-}
-
-.card .icon {
-  font-size: 28px;
-  color: var(--accent);
-  margin-bottom: 10px;
-}
-
-/* =============================
-   SECTIONS (ABOUT, SKILLS…)
-============================= */
-.detail {
-  display: none;
-  padding: 140px 20px 80px;
-  max-width: 880px;
-  margin: auto;
-}
-
-.detail.active {
-  display: block;
-}
-
-.detail-header {
-  display: flex;
-  gap: 14px;
-  margin-bottom: 20px;
-}
-
-.detail-header img {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-}
-
-.card-inner {
-  background: var(--white);
-  padding: 26px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.card-inner h3 {
-  margin-bottom: 10px;
-  margin-top: 14px;
-  color: #066;
-}
-
-.card-inner p, 
-.card-inner li {
-  margin-bottom: 12px;
-  color: #234;
-  line-height: 1.55;
-}
-
-.back-btn {
-  display: inline-flex;
-  gap: 6px;
-  color: var(--accent);
-  font-weight: 600;
-  text-decoration: none;
-  margin-bottom: 20px;
-  cursor: pointer;
-}
-
-.back-btn:hover {
-  text-decoration: underline;
-}
-
-/* =============================
-   PROJECTS LAYOUT
-============================= */
-.project-hero img {
-  width: 100%;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-bottom: 20px;
-  cursor: zoom-in;
-}
-
-.project-three-cols {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 16px;
-  margin-bottom: 28px;
-}
-
-.project-three-cols p {
-  margin-top: 6px;
-}
-
-.project-row {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  margin-bottom: 32px;
-}
-
-.project-row img {
-  width: 48%;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  cursor: zoom-in;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .project-three-cols {
-    grid-template-columns: 1fr;
-  }
-
-  .project-row {
-    flex-direction: column;
-  }
-
-  .project-row img {
-    width: 100%;
-  }
-}
-
-/* =============================
-   ZOOM POPUP
-============================= */
-#imgPopup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 900;
-}
-
-#imgPopup img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-/* =============================
-   BACK TO TOP
-============================= */
-#backToTop {
-  position: fixed;
-  bottom: 26px;
-  right: 26px;
-  padding: 12px 14px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #FFF;
-  cursor: pointer;
-  display: none;
-  z-index: 700;
-}
-
-#backToTop.show {
-  display: block;
+/* small screens adjust header padding */
+@media(max-width:560px){
+  header{ padding:110px 12px 40px }
+  .avatar{ width:180px; height:180px }
 }
 </style>
 </head>
 
-
-
 <body>
 
-<!-- POPUP IMAGE -->
-<div id="imgPopup"><img src=""></div>
+<!-- IMAGE POPUP -->
+<div id="imgPopup" aria-hidden="true"><img src="" alt="Zoom"></div>
 
 <!-- BACK TO TOP -->
-<div id="backToTop"><i class="fa-solid fa-arrow-up"></i></div>
+<div id="backToTop" title="Back to top" aria-hidden="true"><i class="fa-solid fa-arrow-up"></i></div>
 
-
-
-<!-- NAVBAR -->
+<!-- NAV -->
 <nav>
   <div class="inner">
-
     <div class="brand">
-      <img src="avatar.png">
+      <img src="avatar.png" alt="avatar mini">
       <div>
-        <div data-lang-key="brand_name" style="font-weight:700;">Linh Tran</div>
-        <div data-lang-key="brand_tag" style="font-size:12px;color:#066;">
-          Business Administration • Research • Innovation
-        </div>
+        <div data-lang-key="brand_name">Linh Tran</div>
+        <div style="font-size:12px;color:var(--muted)" data-lang-key="brand_tag">Business Administration • Research • Innovation</div>
       </div>
     </div>
 
-    <div style="display:flex; align-items:center; gap:16px;">
-      <ul id="nav-links">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <ul id="nav-links" aria-label="Main nav">
         <li><a href="#home" data-target="home" class="active" data-lang-key="nav_home">Home</a></li>
         <li><a href="#about" data-target="about" data-lang-key="nav_about">About</a></li>
         <li><a href="#skills" data-target="skills" data-lang-key="nav_skills">Skills</a></li>
@@ -348,8 +165,7 @@ header h1 {
         <li><a href="#contact" data-target="contact" data-lang-key="nav_contact">Contact</a></li>
       </ul>
 
-      <!-- Language switch -->
-      <div class="lang-switch">
+      <div class="lang-switch" role="tablist" aria-label="Language switch">
         <span id="lang-en" class="active" data-lang="en">EN</span>
         <span id="lang-vn" data-lang="vn">VN</span>
       </div>
@@ -357,563 +173,503 @@ header h1 {
   </div>
 </nav>
 
-
-
-<!-- =============================
-     HERO / HOME
-============================= -->
-<header id="home" class="active">
-  <img src="avatar.png" class="avatar">
+<!-- HEADER -->
+<header id="home" class="active" aria-label="Home">
+  <img src="avatar.png" class="avatar" alt="Linh avatar">
   <h1 data-lang-key="hero_title">Hello — I'm Linh 🩵</h1>
-  <p data-lang-key="hero_sub">
-    A Business Administration student exploring analysis, research, and simple web-based tools.
-  </p>
+  <p data-lang-key="hero_sub">A Business Administration student exploring analysis, research, and simple web-based tools.</p>
 </header>
-
-
 
 <main>
 
-<!-- HOME GRID -->
-<section style="max-width:900px;margin:auto;padding:0 22px;">
-  <h2 data-lang-key="explore_title" style="color:var(--accent);margin-bottom:12px;">Explore</h2>
+  <!-- HOME GRID -->
+  <section id="home-grid" style="max-width:980px;margin:0 auto;padding:0 18px;">
+    <h2 data-lang-key="explore_title" style="color:var(--accent);margin-bottom:12px">Explore</h2>
 
-  <div class="home-grid">
-    <article class="card" data-open="about">
-      <div class="icon"><i class="fa-solid fa-user"></i></div>
-      <h3 data-lang-key="card_about_title">About</h3>
-      <p data-lang-key="card_about_desc">Background, journey & experience.</p>
-    </article>
+    <div class="home-grid" role="list">
+      <article class="card" data-open="about" role="listitem" aria-label="About">
+        <div class="icon"><i class="fa-solid fa-user"></i></div>
+        <h3 data-lang-key="card_about_title">About</h3>
+        <p data-lang-key="card_about_desc">Background, journey & experience.</p>
+      </article>
 
-    <article class="card" data-open="skills">
-      <div class="icon"><i class="fa-solid fa-gears"></i></div>
-      <h3 data-lang-key="card_skills_title">Skills</h3>
-      <p data-lang-key="card_skills_desc">Professional, technical, and soft skills.</p>
-    </article>
+      <article class="card" data-open="skills" role="listitem" aria-label="Skills">
+        <div class="icon"><i class="fa-solid fa-gears"></i></div>
+        <h3 data-lang-key="card_skills_title">Skills</h3>
+        <p data-lang-key="card_skills_desc">Professional, technical, and soft skills.</p>
+      </article>
 
-    <article class="card" data-open="projects">
-      <div class="icon"><i class="fa-solid fa-folder-open"></i></div>
-      <h3 data-lang-key="card_projects_title">Projects</h3>
-      <p data-lang-key="card_projects_desc">Selected works and learning projects.</p>
-    </article>
+      <article class="card" data-open="projects" role="listitem" aria-label="Projects">
+        <div class="icon"><i class="fa-solid fa-folder-open"></i></div>
+        <h3 data-lang-key="card_projects_title">Projects</h3>
+        <p data-lang-key="card_projects_desc">Selected works and learning projects.</p>
+      </article>
 
-    <article class="card" data-open="certs">
-      <div class="icon"><i class="fa-solid fa-certificate"></i></div>
-      <h3 data-lang-key="card_certs_title">Certificates</h3>
-      <p data-lang-key="card_certs_desc">Courses and academic development.</p>
-    </article>
+      <article class="card" data-open="certs" role="listitem" aria-label="Certificates">
+        <div class="icon"><i class="fa-solid fa-certificate"></i></div>
+        <h3 data-lang-key="card_certs_title">Certificates</h3>
+        <p data-lang-key="card_certs_desc">Courses and academic development.</p>
+      </article>
 
-    <article class="card" data-open="blog">
-      <div class="icon"><i class="fa-solid fa-book"></i></div>
-      <h3 data-lang-key="card_blog_title">Blog / Notes</h3>
-      <p data-lang-key="card_blog_desc">Study notes and reflections.</p>
-    </article>
+      <article class="card" data-open="blog" role="listitem" aria-label="Blog">
+        <div class="icon"><i class="fa-solid fa-book"></i></div>
+        <h3 data-lang-key="card_blog_title">Blog / Notes</h3>
+        <p data-lang-key="card_blog_desc">Study notes and reflections.</p>
+      </article>
 
-    <article class="card" data-open="contact">
-      <div class="icon"><i class="fa-solid fa-envelope"></i></div>
-      <h3 data-lang-key="card_contact_title">Contact</h3>
-      <p data-lang-key="card_contact_desc">Email, GitHub, and LinkedIn.</p>
-    </article>
-  </div>
-</section>
+      <article class="card" data-open="contact" role="listitem" aria-label="Contact">
+        <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+        <h3 data-lang-key="card_contact_title">Contact</h3>
+        <p data-lang-key="card_contact_desc">Email, GitHub, and LinkedIn.</p>
+      </article>
+    </div>
+  </section>
 
+  <!-- ABOUT -->
+  <section id="about" class="detail" aria-labelledby="aboutTitle">
+    <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i><span data-lang-key="back_home" style="margin-left:6px">Back to Home</span></a>
 
-
-<!-- ABOUT -->
-<section id="about" class="detail">
-  <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i>
-    <span data-lang-key="back_home">Back to Home</span>
-  </a>
-
-  <div class="detail-header">
-    <img src="avatar.png">
-    <h2 data-lang-key="about_title">About Me</h2>
-  </div>
-
-  <div class="card-inner">
-    <h3 data-lang-key="about_intro_title">Introduction</h3>
-    <p data-lang-key="about_intro_text">
-      I’m Tran Khanh Linh, a Business Administration student at FTU. 
-      I enjoy structured thinking, analysis, and meaningful collaboration.
-    </p>
-
-    <h3 data-lang-key="about_personal_title">Personal Side</h3>
-    <p data-lang-key="about_personal_text">
-      I love organization systems, reflective writing, and working in quiet consistency — 
-      usually with a cup of matcha latte 🍵 beside me.
-    </p>
-
-    <h3 data-lang-key="about_achieve_title">Achievements</h3>
-    <ul>
-      <li>Second Prize — Provincial English for Gifted Students (2024)</li>
-      <li>IELTS 7.5</li>
-      <li>SAT 1310</li>
-    </ul>
-  </div>
-</section>
-
-
-
-<!-- SKILLS -->
-<section id="skills" class="detail">
-  <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i>
-    <span data-lang-key="back_home">Back to Home</span>
-  </a>
-
-  <div class="detail-header">
-    <img src="avatar.png">
-    <h2 data-lang-key="skills_title">Skills</h2>
-  </div>
-
-  <div class="card-inner">
-    <h3 data-lang-key="skills_prof_title">Professional Skills</h3>
-    <ul>
-      <li data-lang-key="skill_ba">🧭 Business Analysis basics & documentation writing</li>
-      <li data-lang-key="skill_problem">🧩 Structured problem-solving (MECE, issue trees)</li>
-      <li data-lang-key="skill_research">📝 Research & academic synthesis</li>
-      <li data-lang-key="skill_case">📊 Case-solving & recommendations</li>
-      <li data-lang-key="skill_comm">🗣️ Communication & teamwork</li>
-      <li data-lang-key="skill_time">⏳ Time management</li>
-    </ul>
-
-    <h3 data-lang-key="skills_tech_title">Technical Skills</h3>
-    <ul>
-      <li data-lang-key="skill_htmlcss">🌐 HTML/CSS</li>
-      <li data-lang-key="skill_git">🔗 Git & GitHub</li>
-      <li data-lang-key="skill_js">⚡ JavaScript basics</li>
-      <li data-lang-key="skill_markdown">📄 Markdown & Notion</li>
-      <li data-lang-key="skill_spss">📈 SPSS (basic)</li>
-    </ul>
-
-    <h3 data-lang-key="skills_learning_title">Learning Roadmap</h3>
-    <ul>
-      <li data-lang-key="learn_ba">🧭 Strengthen BA foundations</li>
-      <li data-lang-key="learn_js">🟦 Improve JS fundamentals</li>
-      <li data-lang-key="learn_data">📊 Learn data visualization</li>
-    </ul>
-  </div>
-</section>
-
-
-
-<!-- PROJECTS -->
-<section id="projects" class="detail">
-  <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i>
-    <span data-lang-key="back_home">Back to Home</span>
-  </a>
-
-  <div class="detail-header">
-    <img src="avatar.png">
-    <h2 data-lang-key="projects_title">Projects</h2>
-  </div>
-
-  <div class="card-inner">
-
-    <div class="project-hero">
-      <img src="images/project1.png" class="zoomable">
+    <div class="detail-header">
+      <img src="avatar.png" alt="avatar small">
+      <div><h2 id="aboutTitle" data-lang-key="about_title">About Me</h2>
+      <div style="color:var(--muted)" data-lang-key="about_sub">A semi-formal introduction to my background and experience.</div></div>
     </div>
 
-    <div class="project-three-cols">
-      <div>
-        <h4 data-lang-key="proj_web_title">Personal Interactive Website</h4>
-        <p data-lang-key="proj_web_desc">
-          A custom SPA website with pastel cyan theme and responsive layout.
-        </p>
-      </div>
+    <div class="card-inner">
+      <h3 data-lang-key="about_intro_title">Introduction</h3>
+      <p data-lang-key="about_intro_text">
+        I’m <strong>Tran Khanh Linh</strong>, a Business Administration student at Foreign Trade University.  
+        My academic interests include structured problem-solving, research communication, and youth-led innovation.  
+        I enjoy synthesizing complex information into clear, usable formats and supporting community-oriented projects.
+      </p>
 
-      <div>
-        <h4 data-lang-key="proj_notes_title">Study Notes Hub</h4>
-        <p data-lang-key="proj_notes_desc">
-          Structured notes for BA basics, research methods, and frameworks.
-        </p>
-      </div>
+      <h3 style="margin-top:14px" data-lang-key="about_personal_title">Personal Side</h3>
+      <p data-lang-key="about_personal_text">
+        I value continuous learning, thoughtful work, and collaborative environments.  
+        I enjoy organizing information and writing with clarity — and I often work best with a cup of matcha latte beside me 🍵✨.
+      </p>
 
-      <div>
-        <h4 data-lang-key="proj_ui_title">UI Components Practice</h4>
-        <p data-lang-key="proj_ui_desc">
-          Small UI layouts to strengthen frontend fundamentals.
-        </p>
-      </div>
+      <h3 style="margin-top:14px" data-lang-key="about_achieve_title">Achievements</h3>
+      <ul>
+        <li>Second Prize — Provincial English for Gifted Students, Nam Dinh (2024)</li>
+        <li>IELTS 7.5</li>
+        <li>SAT 1310</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="detail" aria-labelledby="skillsTitle">
+    <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i><span data-lang-key="back_home" style="margin-left:6px">Back to Home</span></a>
+
+    <div class="detail-header">
+      <img src="avatar.png" alt="skills avatar">
+      <div><h2 id="skillsTitle" data-lang-key="skills_title">Skills</h2></div>
     </div>
 
-    <div class="project-row">
-      <div style="flex:1;">
-        <h3 data-lang-key="proj_vgo_title">Heritage Preservation Project — VGO</h3>
-        <p data-lang-key="proj_vgo_desc">
-          Contributed to cultural documentation and inclusive communication.
-        </p>
-      </div>
+    <div class="card-inner">
+      <h3 data-lang-key="skills_prof_title">Professional Skills</h3>
+      <ul>
+        <li data-lang-key="skill_ba">🧭 <strong>Business Analysis:</strong> requirements, workflow mapping, stakeholder clarity.</li>
+        <li data-lang-key="skill_problem">🧩 <strong>Structured Problem-Solving:</strong> MECE, 5 Whys, issue-tree thinking.</li>
+        <li data-lang-key="skill_research">📝 <strong>Research & Academic Writing:</strong> literature synthesis and report structure.</li>
+        <li data-lang-key="skill_case">📊 <strong>Case-solving:</strong> solution prioritization and presentation.</li>
+        <li data-lang-key="skill_comm">🗣️ <strong>Communication:</strong> teamwork & facilitation.</li>
+        <li data-lang-key="skill_time">⏳ <strong>Time Management:</strong> consistent learning habits.</li>
+      </ul>
 
-      <img src="images/project4.png" class="zoomable">
+      <h3 style="margin-top:12px" data-lang-key="skills_tech_title">Technical Skills</h3>
+      <ul>
+        <li data-lang-key="skill_htmlcss">🌐 HTML/CSS — responsive layouts & UI basics</li>
+        <li data-lang-key="skill_git">🔗 Git & GitHub — version control, Pages</li>
+        <li data-lang-key="skill_js">⚡ JavaScript (basic) — DOM & events</li>
+        <li data-lang-key="skill_markdown">📄 Markdown & Notion — organization</li>
+        <li data-lang-key="skill_spss">📈 SPSS (basic)</li>
+      </ul>
+
+      <h3 style="margin-top:12px" data-lang-key="skills_learning_title">Learning Roadmap</h3>
+      <ul>
+        <li data-lang-key="learn_ba">🧭 Strengthen Business Analysis foundations</li>
+        <li data-lang-key="learn_js">🟦 Deepen JavaScript fundamentals</li>
+        <li data-lang-key="learn_data">📊 Learn data visualization basics</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="detail" aria-labelledby="projectsTitle">
+    <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i><span data-lang-key="back_home" style="margin-left:6px">Back to Home</span></a>
+
+    <div class="detail-header">
+      <img src="avatar.png" alt="projects avatar">
+      <div><h2 id="projectsTitle" data-lang-key="projects_title">Projects</h2></div>
     </div>
 
-    <div class="project-row">
-      <img src="images/project5.png" class="zoomable">
+    <div class="card-inner">
+      <!-- Hero image -->
+      <div class="project-hero">
+        <img src="images/project1.png" alt="Projects cover" class="zoomable">
+      </div>
 
-      <div style="flex:1;">
-        <h3 data-lang-key="proj_case_title">Business Case Solving Practice</h3>
-        <p data-lang-key="proj_case_desc">
-          Practiced MECE, prioritization, structured analysis — with matcha latte 🍵.
-        </p>
+      <!-- 3 columns under hero -->
+      <div class="project-three-cols">
+        <div>
+          <h4 data-lang-key="proj_web_title">Personal Interactive Website</h4>
+          <p data-lang-key="proj_web_desc">A custom SPA-style portfolio built with HTML, CSS, and light JavaScript. Responsive and easy to update.</p>
+        </div>
+
+        <div>
+          <h4 data-lang-key="proj_notes_title">Study Notes Hub</h4>
+          <p data-lang-key="proj_notes_desc">Organized notes on Research Methods, Organizational Behavior, and BA frameworks — written in Markdown and versioned on GitHub.</p>
+        </div>
+
+        <div>
+          <h4 data-lang-key="proj_ui_title">UI Components Practice</h4>
+          <p data-lang-key="proj_ui_desc">Small components (cards, navs, buttons) created to practice layout, styling, and DOM interactions.</p>
+        </div>
+      </div>
+
+      <!-- Project 4: VGO -->
+      <div class="project-row">
+        <div style="flex:1;">
+          <h3 data-lang-key="proj_vgo_title">Heritage Preservation Project — VGO</h3>
+          <p data-lang-key="proj_vgo_desc">Community project documenting traditional markets, raising awareness, and supporting inclusive activities with hearing-impaired youth.</p>
+        </div>
+        <img src="images/project4.png" alt="VGO image" class="zoomable">
+      </div>
+
+      <!-- Project 5: Case Solving -->
+      <div class="project-row">
+        <img src="images/project5.png" alt="Case solving" class="zoomable">
+        <div style="flex:1;">
+          <h3 data-lang-key="proj_case_title">Business Case Solving Practice</h3>
+          <p data-lang-key="proj_case_desc">Practiced MECE, SWOT, and quick prioritization for case-style problems — improved structured thinking and presentation under time constraints (matcha latte optional). </p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- CERTIFICATES -->
+  <section id="certs" class="detail" aria-labelledby="certsTitle">
+    <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i><span data-lang-key="back_home" style="margin-left:6px">Back to Home</span></a>
 
+    <div class="detail-header">
+      <img src="avatar.png" alt="certs avatar">
+      <div><h2 id="certsTitle" data-lang-key="certs_title">Certificates</h2></div>
+    </div>
 
-<!-- CERTS -->
-<section id="certs" class="detail">
-  <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i>
-    <span data-lang-key="back_home">Back to Home</span>
-  </a>
+    <div class="card-inner">
+      <h3 data-lang-key="cert_academic_title">Academic Coursework</h3>
+      <ul>
+        <li data-lang-key="cert_brm"><strong>Business Research Methods — FTU (2024)</strong><br>Research design, literature synthesis, and academic reporting.</li>
+        <li data-lang-key="cert_ae"><strong>Academic English for Business Communication</strong><br>Analytical writing and structured presentations.</li>
+      </ul>
 
-  <div class="detail-header">
-    <img src="avatar.png">
-    <h2 data-lang-key="certs_title">Certificates</h2>
-  </div>
+      <h3 style="margin-top:12px" data-lang-key="cert_prof_title">Professional Development</h3>
+      <ul>
+        <li data-lang-key="cert_ba"><strong>Business Analysis — Foundation</strong><br>Requirement gathering and stakeholder analysis basics.</li>
+        <li data-lang-key="cert_wp"><strong>Writing & Presentation — FTU</strong><br>Clarity in message and visual structuring.</li>
+      </ul>
 
-  <div class="card-inner">
+      <h3 style="margin-top:12px" data-lang-key="cert_self_title">Self-learning</h3>
+      <ul>
+        <li data-lang-key="cert_html"><strong>Intro to HTML/CSS (2025)</strong></li>
+        <li data-lang-key="cert_notion"><strong>Notion Documentation Basics</strong></li>
+        <li data-lang-key="cert_ez"><strong>Youth Innovation — EZ Program</strong></li>
+      </ul>
+    </div>
+  </section>
 
-    <h3 data-lang-key="cert_academic_title">Academic Coursework</h3>
-    <ul>
-      <li data-lang-key="cert_brm"><strong>Business Research Methods</strong> — research design & writing</li>
-      <li data-lang-key="cert_ae"><strong>Academic English</strong> — structured arguments</li>
-    </ul>
+  <!-- BLOG -->
+  <section id="blog" class="detail" aria-labelledby="blogTitle">
+    <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i><span data-lang-key="back_home" style="margin-left:6px">Back to Home</span></a>
 
-    <h3 data-lang-key="cert_prof_title">Professional Development</h3>
-    <ul>
-      <li data-lang-key="cert_ba"><strong>BA Foundation</strong> — requirements & stakeholders</li>
-      <li data-lang-key="cert_wp"><strong>Writing & Presentation</strong></li>
-    </ul>
+    <div class="detail-header">
+      <img src="avatar.png" alt="blog avatar">
+      <div><h2 id="blogTitle" data-lang-key="blog_title">Blog / Notes</h2></div>
+    </div>
 
-    <h3 data-lang-key="cert_self_title">Self-Learning</h3>
-    <ul>
-      <li data-lang-key="cert_html"><strong>Intro to HTML/CSS</strong></li>
-      <li data-lang-key="cert_notion"><strong>Notion Documentation</strong></li>
-      <li data-lang-key="cert_ez"><strong>Youth Innovation — EZ</strong></li>
-    </ul>
+    <div class="card-inner">
+      <p data-lang-key="blog_intro">This section will gather structured notes, reflections, and short breakdowns of research topics and business frameworks.</p>
 
-  </div>
-</section>
+      <h3 style="margin-top:12px" data-lang-key="blog_planned_title">Planned Posts</h3>
+      <ul data-lang-key="blog_planned_list">
+        <li>How I structure a research report from scratch</li>
+        <li>Youth innovation & inclusive development — insights from EZ & VGO</li>
+        <li>From gifted English to academic writing — my transition</li>
+      </ul>
+    </div>
+  </section>
 
+  <!-- CONTACT -->
+  <section id="contact" class="detail" aria-labelledby="contactTitle">
+    <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i><span data-lang-key="back_home" style="margin-left:6px">Back to Home</span></a>
 
+    <div class="detail-header">
+      <img src="avatar.png" alt="contact avatar">
+      <div><h2 id="contactTitle" data-lang-key="contact_title">Contact</h2></div>
+    </div>
 
-<!-- BLOG -->
-<section id="blog" class="detail">
-  <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i>
-    <span data-lang-key="back_home">Back to Home</span>
-  </a>
+    <div class="card-inner">
+      <p><i class="fa-solid fa-envelope"></i> <strong data-lang-key="contact_email">Email:</strong>
+        <a href="mailto:khanhlinhtransunflower@gmail.com" style="color:var(--cyan-3);text-decoration:underline">khanhlinhtransunflower@gmail.com</a>
+      </p>
 
-  <div class="detail-header">
-    <img src="avatar.png">
-    <h2 data-lang-key="blog_title">Blog / Notes</h2>
-  </div>
+      <p><i class="fa-brands fa-github"></i> <strong data-lang-key="contact_github">GitHub:</strong>
+        <a href="https://github.com/Lin-h-82" target="_blank" style="color:var(--cyan-3);text-decoration:underline">github.com/Lin-h-82</a>
+      </p>
 
-  <div class="card-inner">
+      <p><i class="fa-brands fa-linkedin"></i> <strong data-lang-key="contact_linkedin">LinkedIn:</strong>
+        <a href="https://www.linkedin.com/in/linh-trần-khánh-113229360/" target="_blank" style="color:var(--cyan-3);text-decoration:underline">View Profile</a>
+      </p>
 
-    <p data-lang-key="blog_intro">
-      Structured notes & reflections on research, BA, and learning.
-    </p>
+      <p style="margin-top:12px;color:var(--muted)" data-lang-key="contact_based">Based in Dong Da, Hanoi — open to collaborations and youth innovation projects.</p>
+    </div>
+  </section>
 
-    <h3 data-lang-key="blog_planned_title" style="margin-top:16px;">Planned Posts</h3>
-    <ul data-lang-key="blog_planned_list">
-      <li>How I structure a research report</li>
-      <li>Youth innovation insights</li>
-      <li>Academic writing journey</li>
-    </ul>
-
-  </div>
-</section>
-
-
-
-<!-- CONTACT -->
-<section id="contact" class="detail">
-  <a class="back-btn" data-back><i class="fa-solid fa-arrow-left"></i>
-    <span data-lang-key="back_home">Back to Home</span>
-  </a>
-
-  <div class="detail-header">
-    <img src="avatar.png">
-    <h2 data-lang-key="contact_title">Contact</h2>
-  </div>
-
-  <div class="card-inner">
-
-    <p>
-      <i class="fa-solid fa-envelope"></i>
-      <strong data-lang-key="contact_email">Email:</strong>
-      <a href="mailto:khanhlinhtransunflower@gmail.com"
-         style="color:var(--accent);text-decoration:underline;">
-         khanhlinhtransunflower@gmail.com
-      </a>
-    </p>
-
-    <p>
-      <i class="fa-brands fa-github"></i>
-      <strong data-lang-key="contact_github">GitHub:</strong>
-      <a href="https://github.com/Lin-h-82" target="_blank"
-         style="color:var(--accent);text-decoration:underline;">
-         github.com/Lin-h-82
-      </a>
-    </p>
-
-    <p>
-      <i class="fa-brands fa-linkedin"></i>
-      <strong data-lang-key="contact_linkedin">LinkedIn:</strong>
-      <a href="https://www.linkedin.com/in/linh-trần-khánh-113229360/"
-         target="_blank"
-         style="color:var(--accent);text-decoration:underline;">
-         View Profile
-      </a>
-    </p>
-
-    <p style="margin-top:14px;color:#345;" data-lang-key="contact_based">
-      Based in Dong Da, Hanoi — open to collaborations and youth projects.
-    </p>
-  </div>
-</section>
-
-
+</main>
 
 <!-- FOOTER -->
-<footer style="text-align:center; margin:48px 0; padding:14px; color:#345;">
-  © 2025 Linh Tran — <span data-lang-key="footer_note">Built with 🩵 on GitHub Pages</span>
+<footer>
+  <div style="max-width:1100px;margin:0 auto;padding:12px 18px;text-align:center;">
+    © 2025 Linh Tran — <span data-lang-key="footer_note">Built with 🩵 on GitHub Pages</span>
+  </div>
 </footer>
 
-
-
-
-
-<!-- =============================
-     FULL JAVASCRIPT
-============================= -->
 <script>
+// -----------------------------
+// Show/hide logic + SPA nav
+// -----------------------------
+const homeGridSection = document.getElementById('home-grid');
+const headerEl = document.querySelector('header');
+const allSections = Array.from(document.querySelectorAll('main > section'));
 
-// ---------------------------------
-// SPA Navigation
-// ---------------------------------
-function openSection(id) {
-  document.querySelectorAll("header, main > section.detail")
-    .forEach(s => s.classList.remove("active"));
-
-  if (id === "home") {
-    document.querySelector("header").classList.add("active");
-  } else {
-    document.getElementById(id).classList.add("active");
-  }
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
+function showHome(push=true){
+  // hide sections
+  allSections.forEach(s=> s.classList.remove('active'));
+  headerEl.classList.add('active');
+  // show home-grid (which is a section in main)
+  homeGridSection.style.display = '';
+  if(push) history.pushState({section:'home'}, '', '#home');
+  // update nav active
+  document.querySelectorAll('#nav-links a').forEach(a=> a.classList.toggle('active', a.dataset.target==='home'));
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
-document.querySelectorAll("[data-target]").forEach(link => {
-  link.addEventListener("click", e => {
+function openSection(id, push=true){
+  headerEl.classList.remove('active');
+  allSections.forEach(s=> s.classList.remove('active'));
+  const sec = document.getElementById(id);
+  if(!sec) return showHome();
+  sec.classList.add('active');
+  // hide home-grid to avoid content showing under cards
+  homeGridSection.style.display = 'none';
+  if(push) history.pushState({section:id}, '', '#'+id);
+  document.querySelectorAll('#nav-links a').forEach(a=> a.classList.toggle('active', a.dataset.target===id));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// attach nav links
+document.querySelectorAll('#nav-links a').forEach(link=>{
+  link.addEventListener('click', (e)=>{
     e.preventDefault();
-    openSection(link.dataset.target);
-
-    document.querySelectorAll("#nav-links a").forEach(a => a.classList.remove("active"));
-    link.classList.add("active");
+    const target = link.dataset.target;
+    if(target==='home') showHome();
+    else openSection(target);
   });
 });
 
-document.querySelectorAll("[data-open]").forEach(card => {
-  card.addEventListener("click", () => {
-    openSection(card.dataset.open);
-
-    document.querySelectorAll("#nav-links a").forEach(a => a.classList.remove("active"));
-    document.querySelector(`[data-target="${card.dataset.open}"]`).classList.add("active");
+// attach cards
+document.querySelectorAll('.card[data-open]').forEach(card=>{
+  card.addEventListener('click', ()=> {
+    const id = card.dataset.open;
+    openSection(id);
   });
 });
 
-document.querySelectorAll("[data-back]").forEach(btn => {
-  btn.addEventListener("click", () => {
-    openSection("home");
-
-    document.querySelectorAll("#nav-links a").forEach(a => a.classList.remove("active"));
-    document.querySelector(`[data-target="home"]`).classList.add("active");
+// attach back buttons
+document.querySelectorAll('[data-back]').forEach(btn=>{
+  btn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    showHome();
   });
 });
 
-// ---------------------------------
-// Back To Top
-// ---------------------------------
-const backToTop = document.getElementById("backToTop");
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 260) backToTop.classList.add("show");
-  else backToTop.classList.remove("show");
-});
-backToTop.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+// handle popstate (back/forward)
+window.addEventListener('popstate', (e)=>{
+  const h = location.hash.replace('#','');
+  if(!h || h==='home') showHome(false);
+  else openSection(h, false);
 });
 
-// ---------------------------------
-// Image Zoom Popup
-// ---------------------------------
-const popup = document.getElementById("imgPopup");
-const popupImg = popup.querySelector("img");
+// on load, if hash present open
+document.addEventListener('DOMContentLoaded', ()=>{
+  const initial = location.hash.replace('#','');
+  if(initial && initial!=='home'){
+    openSection(initial, false);
+  } else {
+    showHome(false);
+  }
+});
 
-document.querySelectorAll(".zoomable").forEach(img => {
-  img.addEventListener("click", () => {
+// -----------------------------
+// Back to top
+// -----------------------------
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', ()=>{
+  if(window.scrollY > 260) backToTop.style.display = 'flex';
+  else backToTop.style.display = 'none';
+});
+backToTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+// -----------------------------
+// Image zoom popup (zoom-in animation)
+// -----------------------------
+const popup = document.getElementById('imgPopup');
+const popupImg = popup.querySelector('img');
+
+// make images zoomable: class 'zoomable' or any img inside project-hero/project-row
+document.querySelectorAll('.zoomable, .project-hero img, .project-row img').forEach(img=>{
+  img.addEventListener('click', (e)=>{
+    // set source and show popup
     popupImg.src = img.src;
-    popup.style.display = "flex";
+    popup.style.display = 'flex';
+    popup.setAttribute('aria-hidden','false');
+    // play subtle scale animation (css handles)
+    e.stopPropagation();
   });
 });
 
-popup.addEventListener("click", () => {
-  popup.style.display = "none";
+// close on background click
+popup.addEventListener('click', ()=>{
+  popup.style.display = 'none';
+  popup.setAttribute('aria-hidden','true');
 });
 
-// ---------------------------------
-// Language Switch
-// ---------------------------------
-let currentLang = "en";
+// -----------------------------
+// Language switch
+// -----------------------------
+const langEn = document.getElementById('lang-en');
+const langVn = document.getElementById('lang-vn');
+let currentLang = 'en';
 
+// dictionary (EN / VN mix) - keep keys used in markup
 const LANG = {
   en: {
     brand_name: "Linh Tran",
     brand_tag: "Business Administration • Research • Innovation",
-    nav_home: "Home",
-    nav_about: "About",
-    nav_skills: "Skills",
-    nav_projects: "Projects",
-    nav_certs: "Certificates",
-    nav_contact: "Contact",
-    back_home: "Back to Home",
-    hero_title: "Hello — I'm Linh 🩵",
-    hero_sub: "A Business Administration student exploring analysis, research, and simple web tools.",
-    explore_title: "Explore",
-    card_about_title: "About",
-    card_about_desc: "Background, journey & experience.",
-    card_skills_title: "Skills",
-    card_skills_desc: "Professional, technical, and soft skills.",
-    card_projects_title: "Projects",
-    card_projects_desc: "Selected works and learning projects.",
-    card_certs_title: "Certificates",
-    card_certs_desc: "Courses and academic development.",
-    card_blog_title: "Blog / Notes",
-    card_blog_desc: "Study notes and reflections.",
-    card_contact_title: "Contact",
-    card_contact_desc: "Email, GitHub, and LinkedIn.",
-    about_title: "About Me",
-    about_intro_title: "Introduction",
-    about_intro_text: "I’m Tran Khanh Linh, a Business Administration student at FTU...",
-    about_personal_title: "Personal Side",
-    about_personal_text: "I love organized systems and matcha latte 🍵.",
-    about_achieve_title: "Achievements",
-    skills_title: "Skills",
-    skills_prof_title: "Professional Skills",
-    skills_tech_title: "Technical Skills",
-    skills_learning_title: "Learning Roadmap",
-    projects_title: "Projects",
-    proj_web_title: "Personal Interactive Website",
-    proj_notes_title: "Study Notes Hub",
-    proj_ui_title: "UI Components Practice",
-    proj_vgo_title: "Heritage Preservation Project — VGO",
-    proj_case_title: "Business Case Solving Practice",
-    proj_web_desc: "A custom SPA website with pastel cyan theme and responsive layout.",
-    proj_notes_desc: "Structured notes for BA basics, research methods, and frameworks.",
-    proj_ui_desc: "Small UI layouts to strengthen frontend fundamentals.",
-    proj_vgo_desc: "Contributed to cultural documentation and inclusive communication.",
-    proj_case_desc: "Structured problem-solving practice with MECE.",
-    certs_title: "Certificates",
-    cert_academic_title: "Academic Coursework",
-    cert_prof_title: "Professional Development",
-    cert_self_title: "Self-Learning",
-    blog_title: "Blog / Notes",
-    blog_intro: "Structured notes & reflections.",
-    blog_planned_title: "Planned Posts",
-    contact_title: "Contact",
-    contact_email: "Email:",
-    contact_github: "GitHub:",
-    contact_linkedin: "LinkedIn:",
-    contact_based: "Based in Hanoi — open to collaborations.",
-    footer_note: "Built with 🩵 on GitHub Pages"
+    nav_home: "Home", nav_about:"About", nav_skills:"Skills", nav_projects:"Projects", nav_certs:"Certificates", nav_contact:"Contact",
+    back_home:"Back to Home",
+    hero_title:"Hello — I'm Linh 🩵",
+    hero_sub:"A Business Administration student exploring analysis, research, and simple web-based tools.",
+    explore_title:"Explore",
+    card_about_title:"About", card_about_desc:"Background, journey & experience.",
+    card_skills_title:"Skills", card_skills_desc:"Professional, technical, and soft skills.",
+    card_projects_title:"Projects", card_projects_desc:"Selected works and learning projects.",
+    card_certs_title:"Certificates", card_certs_desc:"Courses and academic development.",
+    card_blog_title:"Blog / Notes", card_blog_desc:"Study notes and reflections.",
+    card_contact_title:"Contact", card_contact_desc:"Email, GitHub, and LinkedIn.",
+    about_title:"About Me", about_sub:"A semi-formal introduction to my background and experience.",
+    about_intro_title:"Introduction",
+    about_intro_text:"I’m Tran Khanh Linh, a Business Administration student at Foreign Trade University. My academic interests include structured problem-solving, research communication, and youth-led innovation.",
+    about_personal_title:"Personal Side",
+    about_personal_text:"I value continuous learning, thoughtful work, and collaborative environments. I often work with a cup of matcha latte beside me 🍵✨.",
+    about_achieve_title:"Achievements",
+    skills_title:"Skills", skills_prof_title:"Professional Skills", skills_tech_title:"Technical Skills", skills_learning_title:"Learning Roadmap",
+    skill_ba:"🧭 Business Analysis — requirements, workflow mapping",
+    skill_problem:"🧩 Structured Problem-Solving — MECE, 5 Whys",
+    skill_research:"📝 Research & Academic Writing",
+    skill_case:"📊 Case-solving & recommendations",
+    skill_comm:"🗣️ Communication & teamwork",
+    skill_time:"⏳ Time management",
+    skill_htmlcss:"🌐 HTML/CSS — responsive layouts", skill_git:"🔗 Git & GitHub", skill_js:"⚡ JavaScript (basic)", skill_markdown:"📄 Markdown & Notion", skill_spss:"📈 SPSS (basic)",
+    learn_ba:"🧭 Strengthen BA foundations", learn_js:"🟦 Improve JS fundamentals", learn_data:"📊 Learn data visualization",
+    projects_title:"Projects",
+    proj_web_title:"Personal Interactive Website", proj_web_desc:"A custom SPA-style portfolio built with HTML, CSS, and light JS.",
+    proj_notes_title:"Study Notes Hub", proj_notes_desc:"Organized notes for research and BA fundamentals using Markdown.",
+    proj_ui_title:"UI Components Practice", proj_ui_desc:"Small UI components to practice frontend basics.",
+    proj_vgo_title:"Heritage Preservation — VGO", proj_vgo_desc:"Community documentation and inclusive activities with hearing-impaired youth.",
+    proj_case_title:"Business Case Solving Practice", proj_case_desc:"MECE, SWOT and quick prioritization practice.",
+    certs_title:"Certificates", cert_academic_title:"Academic Coursework", cert_prof_title:"Professional Development", cert_self_title:"Self-learning",
+    cert_brm:"Business Research Methods — research design & writing", cert_ae:"Academic English — structured arguments",
+    cert_ba:"BA Foundation — requirements & stakeholders", cert_wp:"Writing & Presentation — FTU",
+    cert_html:"Intro to HTML/CSS", cert_notion:"Notion Documentation Basics", cert_ez:"Youth Innovation — EZ Program",
+    blog_title:"Blog / Notes", blog_intro:"Structured notes & reflections.", blog_planned_title:"Planned Posts",
+    contact_title:"Contact", contact_email:"Email:", contact_github:"GitHub:", contact_linkedin:"LinkedIn:", contact_based:"Based in Dong Da, Hanoi — open to collaborations.",
+    footer_note:"Built with 🩵 on GitHub Pages"
   },
-
   vn: {
-    brand_name: "Trần Khánh Linh",
-    brand_tag: "Quản trị Kinh doanh • Nghiên cứu • Đổi mới",
-    nav_home: "Trang chủ",
-    nav_about: "Giới thiệu",
-    nav_skills: "Kỹ năng",
-    nav_projects: "Dự án",
-    nav_certs: "Chứng chỉ",
-    nav_contact: "Liên hệ",
-    back_home: "Quay về Trang chủ",
-    hero_title: "Xin chào — Mình là Linh 🩵",
-    hero_sub: "Sinh viên QTKD thích nghiên cứu, phân tích và tạo web đơn giản.",
-    explore_title: "Khám phá",
-    card_about_title: "Giới thiệu",
-    card_about_desc: "Hành trình và nền tảng.",
-    card_skills_title: "Kỹ năng",
-    card_skills_desc: "Kỹ năng chuyên môn và kỹ thuật.",
-    card_projects_title: "Dự án",
-    card_projects_desc: "Các sản phẩm và dự án.",
-    card_certs_title: "Chứng chỉ",
-    card_certs_desc: "Khoá học và phát triển học thuật.",
-    card_blog_title: "Blog / Notes",
-    card_blog_desc: "Ghi chú học tập.",
-    card_contact_title: "Liên hệ",
-    card_contact_desc: "Email, GitHub, LinkedIn.",
-    about_title: "Về mình",
-    about_intro_title: "Giới thiệu",
-    about_intro_text: "Mình là Trần Khánh Linh, SV QTKD FTU...",
-    about_personal_title: "Một chút về mình",
-    about_personal_text: "Mình thích làm việc yên tĩnh với matcha latte 🍵.",
-    about_achieve_title: "Thành tích",
-    skills_title: "Kỹ năng",
-    skills_prof_title: "Kỹ năng chuyên môn",
-    skills_tech_title: "Kỹ năng kỹ thuật",
-    skills_learning_title: "Định hướng học tập",
-    projects_title: "Dự án",
-    proj_web_title: "Website cá nhân tương tác",
-    proj_notes_title: "Hệ thống ghi chú học tập",
-    proj_ui_title: "Thực hành UI Components",
-    proj_vgo_title: "Dự án bảo tồn di sản — VGO",
-    proj_case_title: "Luyện giải Case Study",
-    proj_web_desc: "Website cá nhân dạng SPA, giao diện pastel cyan.",
-    proj_notes_desc: "Ghi chú học tập cấu trúc bằng Markdown.",
-    proj_ui_desc: "UI nhỏ để luyện frontend.",
-    proj_vgo_desc: "Tham gia tài liệu hoá văn hoá.",
-    proj_case_desc: "Luyện MECE và phân tích.",
-    certs_title: "Chứng chỉ",
-    cert_academic_title: "Khoá học học thuật",
-    cert_prof_title: "Phát triển nghề nghiệp",
-    cert_self_title: "Tự học",
-    blog_title: "Blog / Notes",
-    blog_intro: "Ghi chú & chia sẻ.",
-    blog_planned_title: "Bài viết dự kiến",
-    contact_title: "Liên hệ",
-    contact_email: "Email:",
-    contact_github: "GitHub:",
-    contact_linkedin: "LinkedIn:",
-    contact_based: "Hà Nội — sẵn sàng hợp tác.",
-    footer_note: "Xây dựng bằng 🩵 trên GitHub Pages"
+    brand_name:"Trần Khánh Linh",
+    brand_tag:"Quản trị Kinh doanh • Nghiên cứu • Đổi mới",
+    nav_home:"Trang chủ", nav_about:"Giới thiệu", nav_skills:"Kỹ năng", nav_projects:"Dự án", nav_certs:"Chứng chỉ", nav_contact:"Liên hệ",
+    back_home:"Quay về Trang chủ",
+    hero_title:"Xin chào — Mình là Linh 🩵",
+    hero_sub:"Sinh viên QTKD thích nghiên cứu, phân tích và tạo web đơn giản.",
+    explore_title:"Khám phá",
+    card_about_title:"Giới thiệu", card_about_desc:"Hành trình và nền tảng.",
+    card_skills_title:"Kỹ năng", card_skills_desc:"Kỹ năng chuyên môn và kỹ thuật.",
+    card_projects_title:"Dự án", card_projects_desc:"Các sản phẩm và dự án.",
+    card_certs_title:"Chứng chỉ", card_certs_desc:"Khoá học và phát triển học thuật.",
+    card_blog_title:"Blog / Notes", card_blog_desc:"Ghi chú học tập.",
+    card_contact_title:"Liên hệ", card_contact_desc:"Email, GitHub, LinkedIn.",
+    about_title:"Về mình", about_sub:"Giới thiệu ngắn gọn — semi-formal.",
+    about_intro_title:"Giới thiệu",
+    about_intro_text:"Mình là Trần Khánh Linh, SV Quản trị Kinh doanh FTU. Mình quan tâm tới tư duy cấu trúc, truyền thông nghiên cứu và đổi mới do giới trẻ khởi xướng.",
+    about_personal_title:"Một chút về mình",
+    about_personal_text:"Mình thích học liên tục, viết có cấu trúc và làm việc cùng đồng đội. Matcha latte là nhiên liệu yêu thích 🍵✨.",
+    about_achieve_title:"Thành tích",
+    skills_title:"Kỹ năng", skills_prof_title:"Kỹ năng chuyên môn", skills_tech_title:"Kỹ năng kỹ thuật", skills_learning_title:"Lộ trình học",
+    skill_ba:"🧭 Phân tích nghiệp vụ — yêu cầu & sơ đồ quy trình",
+    skill_problem:"🧩 Tư duy giải quyết cấu trúc — MECE, 5 Whys",
+    skill_research:"📝 Nghiên cứu & tổng hợp học thuật",
+    skill_case:"📊 Giải case & đề xuất",
+    skill_comm:"🗣️ Giao tiếp & làm việc nhóm",
+    skill_time:"⏳ Quản lý thời gian",
+    skill_htmlcss:"🌐 HTML/CSS — layout responsive", skill_git:"🔗 Git & GitHub", skill_js:"⚡ JavaScript cơ bản", skill_markdown:"📄 Markdown & Notion", skill_spss:"📈 SPSS cơ bản",
+    learn_ba:"🧭 Củng cố nền tảng BA", learn_js:"🟦 Nâng JS cơ bản", learn_data:"📊 Học biểu đồ & trực quan hóa",
+    projects_title:"Dự án",
+    proj_web_title:"Website cá nhân tương tác", proj_web_desc:"Website dạng SPA, giao diện pastel cyan, responsive.",
+    proj_notes_title:"Hệ thống ghi chú học tập", proj_notes_desc:"Ghi chú có cấu trúc bằng Markdown & GitHub.",
+    proj_ui_title:"Thực hành UI Components", proj_ui_desc:"Các UI nhỏ để luyện frontend.",
+    proj_vgo_title:"Dự án bảo tồn — VGO", proj_vgo_desc:"Tài liệu hoá văn hoá & hoạt động bao trùm.",
+    proj_case_title:"Luyện giải Case Study", proj_case_desc:"Luyện MECE, SWOT & phân tích nhanh",
+    certs_title:"Chứng chỉ", cert_academic_title:"Khoá học học thuật", cert_prof_title:"Phát triển nghề nghiệp", cert_self_title:"Tự học",
+    cert_brm:"Business Research Methods — thiết kế nghiên cứu & viết báo cáo", cert_ae:"Academic English — lập luận rõ ràng",
+    cert_ba:"BA Foundation — thu thập yêu cầu & stakeholders", cert_wp:"Viết & Trình bày — FTU",
+    cert_html:"Intro to HTML/CSS", cert_notion:"Notion Documentation", cert_ez:"Youth Innovation — EZ",
+    blog_title:"Blog / Notes", blog_intro:"Ghi chú & chia sẻ.", blog_planned_title:"Bài viết dự kiến",
+    contact_title:"Liên hệ", contact_email:"Email:", contact_github:"GitHub:", contact_linkedin:"LinkedIn:", contact_based:"Đống Đa, Hà Nội — sẵn sàng hợp tác.",
+    footer_note:"Xây dựng bằng 🩵 trên GitHub Pages"
   }
 };
 
+// function to apply language: use data-lang-key attribute
 function applyLanguage(lang) {
-  document.querySelectorAll("[data-lang-key]").forEach(el => {
-    const key = el.dataset.langKey;
-    if (LANG[lang][key]) el.textContent = LANG[lang][key];
+  currentLang = lang;
+  document.querySelectorAll('[data-lang-key]').forEach(el=>{
+    const key = el.getAttribute('data-lang-key');
+    if(!key) return;
+    if(LANG[lang] && LANG[lang][key] !== undefined){
+      // preserve simple inline tags by using innerHTML
+      el.innerHTML = LANG[lang][key];
+    }
   });
 }
 
-document.getElementById("lang-en").onclick = () => {
-  document.getElementById("lang-en").classList.add("active");
-  document.getElementById("lang-vn").classList.remove("active");
-  applyLanguage("en");
-};
+// attach language buttons
+langEn.addEventListener('click', ()=>{
+  langEn.classList.add('active'); langVn.classList.remove('active');
+  applyLanguage('en');
+});
+langVn.addEventListener('click', ()=>{
+  langVn.classList.add('active'); langEn.classList.remove('active');
+  applyLanguage('vn');
+});
 
-document.getElementById("lang-vn").onclick = () => {
-  document.getElementById("lang-vn").classList.add("active");
-  document.getElementById("lang-en").classList.remove("active");
-  applyLanguage("vn");
-};
+// apply initial language (en)
+applyLanguage('en');
 
 </script>
-
 
 </body>
 </html>
