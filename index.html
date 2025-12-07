@@ -15,309 +15,389 @@
     --cyan-2:#00c6ff;
     --cyan-3:#0072ff;
     --accent:#0077aa;
-    --card-bg: #ffffff;
-    --glass: rgba(255,255,255,0.75);
+    --card-bg:#ffffff;
+    --glass:rgba(255,255,255,0.8);
     --radius:14px;
   }
-  body{
-    font-family:'Poppins',sans-serif;
-    background:var(--cyan-1);
-    margin:0; color:#123;
-  }
-  html{ scroll-behavior:smooth; }
 
-  /* NAV */
+  html { scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--cyan-1);
+    font-family:'Poppins', sans-serif;
+    color:#123;
+  }
+
   nav{
-    position:sticky; top:0; z-index:9;
-    background:rgba(255,255,255,0.65);
-    backdrop-filter: blur(6px);
-    box-shadow:0 6px 16px rgba(0,0,0,0.05);
+    position:sticky; top:0; z-index:200;
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(6px);
+    box-shadow:0 6px 18px rgba(0,0,0,0.06);
   }
   nav .inner{
-    max-width:1100px; margin:auto;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:10px 20px;
+    max-width:1100px; margin:0 auto;
+    padding:10px 18px;
+    display:flex; justify-content:space-between; align-items:center;
   }
-  nav ul{list-style:none;display:flex;gap:20px;margin:0;padding:0;}
+  nav ul{ display:flex; gap:18px; list-style:none; margin:0; padding:0; }
   nav a{
-    text-decoration:none; font-weight:600; color:var(--accent);
+    text-decoration:none; color:var(--accent); font-weight:600;
     padding:8px 10px; border-radius:8px;
   }
-  nav a.active{
-    background:rgba(0,0,0,0.05);
-    color:var(--cyan-3);
-  }
+  nav a.active{ background:rgba(0,119,170,0.12); color:var(--cyan-3); }
 
-  /* HEADER */
-  header{
-    text-align:center; color:white;
-    padding:60px 20px 40px;
+  header#home{
     background:linear-gradient(135deg,var(--cyan-2),var(--cyan-3));
+    text-align:center; padding:60px 20px 40px; color:white;
   }
   .avatar{
     width:160px;height:160px;border-radius:50%;
     object-fit:cover;border:6px solid rgba(255,255,255,0.9);
-    box-shadow:0 8px 24px rgba(0,0,0,0.15);
+    margin:0 auto 16px;
   }
-  header h1{margin:12px 0 4px;font-size:42px;font-weight:700;}
-  header p{margin:0;font-size:18px;}
 
-  /* MAIN */
-  main{max-width:1100px;margin:-40px auto 50px;padding:0 20px;}
+  main{ max-width:1100px; margin:-40px auto 60px; padding:0 18px; }
 
-  /* CARDS */
   .home-grid{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;margin-top:20px;
+    display:grid; gap:20px; margin-top:14px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   }
   .card{
-    background:white;padding:20px;border-radius:var(--radius);
-    box-shadow:0 8px 22px rgba(0,0,0,0.06);
-    transition:0.25s; cursor:pointer;
+    background:white; padding:20px; border-radius:var(--radius);
+    box-shadow:0 8px 30px rgba(0,0,0,0.06);
+    transition:0.28s; cursor:pointer;
   }
-  .card:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,0.10);}
-  .card .icon{font-size:26px;color:var(--cyan-3);}
-  .card h3{margin:8px 0;}
-
-  /* DETAIL SECTIONS */
-  .detail{display:none;animation:fade .35s ease;}
-  .detail.active{display:block;}
-
-  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-
-  .detail-header{
-    display:flex; gap:14px; align-items:center; margin-bottom:12px;
-  }
-  .detail-header img{
-    width:90px;height:90px;border-radius:50%;object-fit:cover;
-    border:4px solid rgba(0,0,0,0.05);
+  .card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 40px rgba(0,0,0,0.10);
   }
 
-  .back-btn{
-    display:inline-flex;gap:6px;align-items:center;
-    background:var(--glass);padding:8px 12px;border-radius:10px;
-    text-decoration:none;font-weight:600;color:var(--accent);
-    margin-bottom:16px;
-  }
+  .detail { display:none; margin-top:20px; animation:fade .36s ease; }
+  .detail.active { display:block; }
 
-  .card-inner{
-    background:white;padding:20px;border-radius:12px;
+  .detail-header{ display:flex; gap:16px; align-items:center; margin-bottom:12px; }
+  .detail .card-inner{
+    background:white; padding:18px; border-radius:12px;
     box-shadow:0 8px 20px rgba(0,0,0,0.05);
   }
 
-  /* PROJECTS */
-  .projects-grid{
-    margin-top:10px;
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:16px;
-  }
-  .proj{background:#fbfdff;border-radius:10px;overflow:hidden;box-shadow:0 8px 18px rgba(0,0,0,0.05);}
-  .proj img{width:100%;height:150px;object-fit:cover;}
-  .proj .meta{padding:12px;font-size:14px;color:#345;}
-
-  /* EXPERIENCE IMAGES */
-  .exp-grid{
-    margin:10px 0;
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:12px;
-  }
-  .exp-grid img{
-    width:100%;height:150px;object-fit:cover;
-    border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.06);
+  .projects-grid, .experience-grid{
+    display:grid; gap:16px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    margin-top:12px;
   }
 
-  /* CONTACT */
-  .contact-list{list-style:none;margin:0;padding:0;}
-  .contact-list li{margin:8px 0;display:flex;gap:10px;align-items:center;}
+  .proj{
+    background:#fbfdff; border-radius:10px; overflow:hidden;
+    box-shadow:0 8px 18px rgba(0,0,0,0.04);
+  }
+  .proj img{
+    width:100%; height:140px; object-fit:cover;
+    display:block;
+  }
+  .proj .meta{ padding:10px 12px; }
 
-  footer{text-align:center;margin-top:40px;padding:20px;color:#234;}
+  .contact-list{ list-style:none; padding:0; margin:0; }
+  .contact-list li{ margin:8px 0; display:flex; gap:10px; }
+
+  footer{ margin-top:48px; text-align:center; padding:30px 12px; }
+  
+  @keyframes fade { from{opacity:0;} to{opacity:1;} }
+
 </style>
 </head>
-
 <body>
 
 <!-- NAV -->
 <nav>
   <div class="inner">
-    <div style="font-weight:700;color:#077;">Linh Tran</div>
+    <div style="font-weight:700; color:#084;">Linh Tran</div>
     <ul id="nav-links">
-      <li><a href="#home" data-target="home" class="active">Home</a></li>
-      <li><a href="#about" data-target="about">About</a></li>
-      <li><a href="#skills" data-target="skills">Skills</a></li>
-      <li><a href="#projects" data-target="projects">Projects</a></li>
-      <li><a href="#contact" data-target="contact">Contact</a></li>
+      <li><a data-target="home" class="active">Home</a></li>
+      <li><a data-target="about">About</a></li>
+      <li><a data-target="skills">Skills</a></li>
+      <li><a data-target="projects">Projects</a></li>
+      <li><a data-target="certs">Certificates</a></li>
+      <li><a data-target="contact">Contact</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- HEADER -->
+<!-- HOME -->
 <header id="home">
-  <img src="avatar.png" class="avatar" onerror="this.style.display='none'">
+  <img src="avatar.png" class="avatar" alt="">
   <h1>Hello — I'm Linh 🩵</h1>
-  <p>Business Administration student exploring research, innovation & simple web building.</p>
+  <p>A Business Administration student exploring research, green innovation, and simple web projects.</p>
 </header>
 
 <main>
 
 <!-- HOME GRID -->
 <section id="home-grid">
-  <h2 style="color:var(--accent);margin-bottom:10px;">Explore</h2>
   <div class="home-grid">
-    <div class="card" data-open="about"><div class="icon"><i class="fa-solid fa-user"></i></div><h3>About</h3><p>Bio • Journey • Experience</p></div>
-    <div class="card" data-open="skills"><div class="icon"><i class="fa-solid fa-gears"></i></div><h3>Skills</h3><p>Technical • Research • Soft skills</p></div>
-    <div class="card" data-open="projects"><div class="icon"><i class="fa-solid fa-folder-open"></i></div><h3>Projects</h3><p>Mini projects & study work</p></div>
-    <div class="card" data-open="contact"><div class="icon"><i class="fa-solid fa-envelope"></i></div><h3>Contact</h3><p>Email • GitHub • LinkedIn</p></div>
+    <div class="card" data-open="about">
+      <div class="icon"><i class="fa-solid fa-user"></i></div>
+      <h3>About</h3>
+      <p>Short bio, journey & goals.</p>
+    </div>
+
+    <div class="card" data-open="skills">
+      <div class="icon"><i class="fa-solid fa-gears"></i></div>
+      <h3>Skills</h3>
+      <p>Technical, research & soft skills.</p>
+    </div>
+
+    <div class="card" data-open="projects">
+      <div class="icon"><i class="fa-solid fa-folder-open"></i></div>
+      <h3>Projects</h3>
+      <p>Selected mini-projects (3 thumbnails).</p>
+    </div>
+
+    <div class="card" data-open="certs">
+      <div class="icon"><i class="fa-solid fa-certificate"></i></div>
+      <h3>Certificates</h3>
+      <p>Courses & achievements.</p>
+    </div>
+
+    <div class="card" data-open="blog">
+      <div class="icon"><i class="fa-solid fa-book"></i></div>
+      <h3>Blog / Notes</h3>
+      <p>Short posts & summaries.</p>
+    </div>
+
+    <div class="card" data-open="contact">
+      <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+      <h3>Contact</h3>
+      <p>Email, GitHub, LinkedIn.</p>
+    </div>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ABOUT --------------------------------------------- -->
 <section id="about" class="detail">
-  <a data-back class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back</a>
+  <a class="back-btn" data-back>← Back to Home</a>
+
   <div class="detail-header">
-    <img src="avatar.png">
+    <img src="avatar.png" style="width:90px;height:90px;border-radius:50%;">
     <div>
       <h2>About Me</h2>
-      <div style="color:#456;">Journey • Experience • Interests</div>
+      <div style="color:#456;">
+        Business Administration student @ FTU • Research • Sustainability • Innovation
+      </div>
     </div>
   </div>
 
   <div class="card-inner">
-    <h3>Who I Am</h3>
+    <h3>Bio</h3>
     <p>
-      I'm Linh — a Business Administration student at FTU.  
-      I’m interested in business analysis, structured problem-solving, sustainability (especially green innovation), and research writing.  
-      I love simplifying complex ideas and building small digital tools for study & research.
+      I'm Linh — a Business Administration student at FTU with interest in research,
+      structured problem-solving, youth innovation and sustainable development.
     </p>
 
-    <h3 style="margin-top:18px;">Experience</h3>
-    <ul style="margin:10px 0;">
-      <li><strong>Entrepreneur Z (EZ) – FIIS, FTU</strong> – Worked with youth innovation & sustainable development projects.</li>
-      <li><strong>Vietnam Global Outreach (VGO)</strong> – Heritage preservation project with hearing-impaired youth.</li>
-      <li><strong>Business Case Solving</strong> – Participated in multiple case scenarios & teamwork challenges.</li>
-    </ul>
+    <h3 style="margin-top:16px;">Experience Images <!-- UPDATED --></h3>
+    <p>Dưới đây là 2 ảnh tượng trưng của phần Experience, như bé yêu cầu.</p>
 
-    <!-- EXPERIENCE IMAGES -->
-    <div class="exp-grid">
-      <img src="project4.png" alt="experience 1" onerror="this.style.background='#eef';">
-      <img src="project5.png" alt="experience 2" onerror="this.style.background='#eef';">
+    <div class="experience-grid">
+      <div class="proj">
+        <img src="images/project4.png" alt="experience img 1">
+        <div class="meta"><strong>Experience Image 1</strong></div>
+      </div>
+      <div class="proj">
+        <img src="images/project5.png" alt="experience img 2">
+        <div class="meta"><strong>Experience Image 2</strong></div>
+      </div>
     </div>
-
-    <h3 style="margin-top:18px;">Achievements</h3>
-    <ul>
-      <li>Second Prize – Provincial English for Gifted Students</li>
-      <li>IELTS 7.5</li>
-      <li>SAT 1310</li>
-    </ul>
   </div>
 </section>
 
-<!-- SKILLS -->
+
+<!-- SKILLS --------------------------------------------- -->
 <section id="skills" class="detail">
-  <a data-back class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back</a>
+  <a class="back-btn" data-back>← Back to Home</a>
+
   <div class="detail-header">
-    <img src="avatar.png">
-    <div><h2>Skills</h2></div>
-  </div>
-
-  <div class="card-inner">
-    <h3>Research & Business</h3>
-    <ul>
-      <li>Business Analysis (foundations)</li>
-      <li>Structured problem-solving</li>
-      <li>Research writing & academic documentation</li>
-      <li>Case competition practice</li>
-      <li>Project coordination</li>
-    </ul>
-
-    <h3 style="margin-top:16px;">Technical</h3>
-    <ul>
-      <li>HTML • CSS (beginner)</li>
-      <li>Git & GitHub (basic)</li>
-      <li>Markdown • Notion</li>
-    </ul>
-
-    <h3 style="margin-top:16px;">Soft Skills</h3>
-    <ul>
-      <li>Communication & public speaking</li>
-      <li>Teamwork across diverse groups</li>
-      <li>Empathy • Active listening</li>
-      <li>Adaptability • Time management</li>
-    </ul>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="detail">
-  <a data-back class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back</a>
-  <div class="detail-header">
-    <img src="avatar.png">
-    <div><h2>Projects</h2></div>
-  </div>
-
-  <div class="card-inner">
-    <div class="projects-grid">
-      <div class="proj"><img src="project1.png"><div class="meta">Personal Website • Built with HTML/CSS/JS</div></div>
-      <div class="proj"><img src="project2.png"><div class="meta">Study Notes Hub • Markdown notes</div></div>
-      <div class="proj"><img src="project3.png"><div class="meta">UI Components • Basic CSS layouts</div></div>
+    <img src="avatar.png" style="width:90px;height:90px;border-radius:50%;">
+    <div>
+      <h2>Skills</h2>
+      <div style="color:#456;">Technical, research and soft skills overview.</div>
     </div>
   </div>
+
+  <div class="card-inner">
+    <h3>Specialist Skills</h3>
+    <ul>
+      <li>Business Analysis</li>
+      <li>Structured Problem-Solving</li>
+      <li>Research & Academic Writing</li>
+      <li>Case Solving</li>
+      <li>Project Support & Coordination</li>
+      <li>Public Speaking & Communication</li>
+      <li>Teamwork & Adaptability</li>
+    </ul>
+
+    <h3>Technical</h3>
+    <ul>
+      <li>HTML / CSS</li>
+      <li>Git & GitHub</li>
+      <li>Markdown & Notion</li>
+    </ul>
+  </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="detail">
-  <a data-back class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back</a>
+
+<!-- PROJECTS --------------------------------------------- -->
+<section id="projects" class="detail">
+  <a class="back-btn" data-back>← Back to Home</a>
+
   <div class="detail-header">
-    <img src="avatar.png">
-    <div><h2>Contact</h2></div>
+    <img src="avatar.png" style="width:90px;height:90px;border-radius:50%;">
+    <div>
+      <h2>Projects</h2>
+      <div style="color:#456;">3 thumbnail projects (no repo links).</div>
+    </div>
+  </div>
+
+  <div class="card-inner">
+
+    <div class="projects-grid">
+
+      <!-- UPDATED — removed all <a href> links -->
+      <div class="proj">
+        <img src="images/project1.png">
+        <div class="meta">
+          <h4>Personal Website</h4>
+          <p>Interactive HTML/CSS portfolio.</p>
+        </div>
+      </div>
+
+      <div class="proj">
+        <img src="images/project2.png">
+        <div class="meta">
+          <h4>Study Notes Hub</h4>
+          <p>Organized notes in Markdown.</p>
+        </div>
+      </div>
+
+      <div class="proj">
+        <img src="images/project3.png">
+        <div class="meta">
+          <h4>UI Components</h4>
+          <p>Basic practice with layouts.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CERTIFICATES --------------------------------------------- -->
+<section id="certs" class="detail">
+  <a class="back-btn" data-back>← Back to Home</a>
+  <div class="detail-header">
+    <img src="avatar.png" style="width:90px;height:90px;border-radius:50%;">
+    <div>
+      <h2>Certificates</h2>
+    </div>
+  </div>
+
+  <div class="card-inner">
+    <ul>
+      <li>Business Research Methods (2024)</li>
+      <li>Business Analysis Foundation</li>
+      <li>Academic English & Research Writing</li>
+      <li>Intro to HTML/CSS (2025)</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- BLOG --------------------------------------------- -->
+<section id="blog" class="detail">
+  <a class="back-btn" data-back>← Back to Home</a>
+  <div class="detail-header">
+    <img src="avatar.png" style="width:90px;height:90px;border-radius:50%;">
+    <div>
+      <h2>Blog / Notes</h2>
+    </div>
+  </div>
+
+  <div class="card-inner">
+    <p>Your notes & writing will appear here later ✨</p>
+  </div>
+</section>
+
+
+<!-- CONTACT --------------------------------------------- -->
+<section id="contact" class="detail">
+  <a class="back-btn" data-back>← Back to Home</a>
+  <div class="detail-header">
+    <img src="avatar.png" style="width:90px;height:90px;border-radius:50%;">
+    <div>
+      <h2>Contact</h2>
+    </div>
   </div>
 
   <div class="card-inner">
     <ul class="contact-list">
-      <li><i class="fa-solid fa-envelope"></i> <a href="mailto:khanhlinhtransunflower@gmail.com">khanhlinhtransunflower@gmail.com</a></li>
-      <li><i class="fa-brands fa-github"></i> <a href="https://github.com/Lin-h-82" target="_blank">github.com/Lin-h-82</a></li>
-      <li><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/linh-trần-khánh-113229360" target="_blank">LinkedIn</a></li>
+      <li><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:khanhlinhtransunflower@gmail.com">khanhlinhtransunflower@gmail.com</a></li>
+      <li><i class="fa-brands fa-github"></i> GitHub: <a target="_blank" href="https://github.com/Lin-h-82">github.com/Lin-h-82</a></li>
+      <li><i class="fa-brands fa-linkedin"></i> LinkedIn: <a target="_blank" href="https://www.linkedin.com/in/linh-trần-khánh-113229360">Linh Trần Khánh</a></li>
     </ul>
   </div>
 </section>
 
 </main>
 
-<footer>© 2025 Linh Tran — Built with 🩵 using GitHub Pages</footer>
+<footer>
+  © 2025 Linh Tran — Built with 🩵 using GitHub Pages
+</footer>
 
 <script>
-  // show/hide logic
-  const cards=document.querySelectorAll('.card[data-open]');
-  const details=document.querySelectorAll('.detail');
-  const navLinks=document.querySelectorAll('nav a[data-target]');
-  const backBtns=document.querySelectorAll('[data-back]');
-  const homeGrid=document.getElementById('home-grid');
+(function(){
+  const homeGrid = document.getElementById("home-grid");
+  const details = document.querySelectorAll(".detail");
+  const cards = document.querySelectorAll(".card[data-open]");
+  const navLinks = document.querySelectorAll("nav a[data-target]");
+  const backBtns = document.querySelectorAll("[data-back]");
 
-  function showHome(push=true){
-    details.forEach(d=>d.classList.remove('active'));
-    homeGrid.style.display='';
-    navLinks.forEach(a=>a.classList.toggle('active',a.dataset.target==='home'));
-    if(push) history.pushState({},'', '#home');
+  function showHome(){
+    details.forEach(s=>s.classList.remove("active"));
+    homeGrid.style.display="block";
+    navLinks.forEach(a=>a.classList.toggle("active", a.dataset.target==="home"));
+    location.hash="home";
   }
 
-  function showSection(id,push=true){
-    details.forEach(d=>d.classList.remove('active'));
-    const s=document.getElementById(id);
-    s.classList.add('active');
-    homeGrid.style.display='none';
-    navLinks.forEach(a=>a.classList.toggle('active',a.dataset.target===id));
-    if(push) history.pushState({section:id},'', '#'+id);
-    s.scrollIntoView({behavior:'smooth'});
+  function showSection(id){
+    details.forEach(s=>s.classList.remove("active"));
+    const sec = document.getElementById(id);
+    if(sec){
+      sec.classList.add("active");
+      homeGrid.style.display="none";
+      navLinks.forEach(a=>a.classList.toggle("active", a.dataset.target===id));
+      location.hash=id;
+      sec.scrollIntoView({behavior:"smooth"});
+    }
   }
 
-  cards.forEach(c=>c.onclick=()=>showSection(c.dataset.open));
-  navLinks.forEach(a=>a.onclick=(e)=>{e.preventDefault();a.dataset.target==='home'?showHome():showSection(a.dataset.target);});
-  backBtns.forEach(b=>b.onclick=(e)=>{e.preventDefault();showHome();});
-
-  window.addEventListener('popstate',()=>{
-    const hash=location.hash.replace('#','');
-    if(!hash||hash==='home') showHome(false);
-    else showSection(hash,false);
+  cards.forEach(c=>{
+    c.onclick=()=>showSection(c.dataset.open);
   });
+
+  navLinks.forEach(a=>{
+    a.onclick=(e)=>{
+      e.preventDefault();
+      if(a.dataset.target==="home") showHome();
+      else showSection(a.dataset.target);
+    };
+  });
+
+  backBtns.forEach(btn=>btn.onclick=showHome);
+
+  const initial = location.hash.replace("#","");
+  if(initial && initial!=="home") showSection(initial);
+})();
 </script>
 
 </body>
